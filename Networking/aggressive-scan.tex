@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}  % Remove paper size specification
+
+% ===== PACKAGE IMPORTS =====
+% Essential packages for document formatting and functionality
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}       
+\usepackage{lmodern}           
+\usepackage[paperwidth=330mm,paperheight=450mm,margin=0.3in]{geometry}  % Further reduced margins to 0.3in
+\usepackage{xcolor}            
+\usepackage{colortbl}       
+\usepackage{hyperref}      
+\usepackage{graphicx}     
+\usepackage{enumitem}       
+\usepackage{booktabs}      
+\usepackage{listings}       
+\usepackage[breakable,skins,theorems]{tcolorbox}  
+\usepackage{titlesec}         
+\usepackage{fancyhdr}         
+\usepackage{multirow}          
+\usepackage{wrapfig}          
+\usepackage{microtype}        
+
+% ===== COLOR DEFINITIONS =====
+% Standard document colors
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}  
+\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}       
+\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}        
+\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}      
+\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}       
+\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}    
+\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}       
+\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}     
+
+% terminal output styling
+\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}  
+\definecolor{kalitext}{rgb}{0.4,0.7,1.0}           
+\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}        
+\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}        
+\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}      
+\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}         
+\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}     
+
+% ===== SECTION TITLE FORMATTING =====
+% Format section headings with custom colors
+\titleformat{\section}
+{\color{sectioncolor}\normalfont\Large\bfseries}
+{\color{sectioncolor}\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\color{subsectioncolor}\normalfont\large\bfseries}
+{\color{subsectioncolor}\thesubsection}{1em}{}
+
+% ===== CUSTOM ENVIRONMENTS =====
+% Command box environment for terminal commands and output
+\newenvironment{commandbox}[1][]{
+    \begin{tcolorbox}[
+        colback=kalibackground,   
+        colframe=commandcolor,    
+        fonttitle=\bfseries\color{white},  
+        title=#1,               
+        breakable=true           
+    ]
+}{
+    \end{tcolorbox}
+}
+
+% ===== CODE LISTING SETTINGS =====
+% Configure how code listings appear
+\lstset{
+    backgroundcolor=\color{kalibackground},
+    basicstyle=\footnotesize\ttfamily\color{warningcolor},  
+    breakatwhitespace=false,       
+    breaklines=true,              
+    captionpos=b,                
+    commentstyle=\color{commentcolor},  
+    keepspaces=true,               
+    keywordstyle=\color{kalitext}, 
+    showspaces=false,              
+    showstringspaces=false,       
+    showtabs=false,             
+    tabsize=2,                    
+    moredelim=[il][\color{commentcolor}]{\$\ }, 
+    stringstyle=\color{kalitext}
+}
+
+% Add a specific setting for bash listings where # should be a comment
+\lstdefinestyle{bash}{
+    morecomment=[l][\color{commentcolor}]{\#}
+}
+
+\begin{document}
+% No page numbers or headers on this special page
+\thispagestyle{empty}
+
+% Set the section counter to match main document
+\setcounter{section}{1}
+\setcounter{subsection}{3}
+
+\subsection{Aggressive Scan (-A)}
+
+What if you can have both \textbf{-O}, \textbf{-sV} and some more in one option? That would be \textbf{-A}. This option enables OS detection, version scanning, and traceroute, among other things.
+
+\begin{commandbox}[Aggressive Scan]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\normalsize\ttfamily\color{warningcolor}]
+$ sudo nmap -A {target_IP}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\normalsize\ttfamily\color{kalitext}]
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:21 GMT
+Nmap scan report for 10.10.219.233
+Host is up (0.0062s latency).
+Not shown: 991 closed ports
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
+| ssh-hostkey: 
+|   256 b9:bc:8f:01:5f:59:23:d3:3a:a2:2d:04:10:e5:04:2d (ECDSA)
+|_  256 c0:11:12:52:14:b3:e2:3d:41:bc:3e:94:bb:73:5f:89 (ED25519)
+25/tcp  open  smtp     Postfix smtpd
+|_smtp-commands: debra2.thm.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, CHUNKING, 
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+53/tcp  open  domain   ISC BIND 9.18.28-1~deb12u2 (Debian Linux)
+| dns-nsid: 
+|_  bind.version: 9.18.28-1~deb12u2-Debian
+80/tcp  open  http     nginx 1.22.1
+|_http-title: Welcome to nginx on Debian!
+|_http-server-header: nginx/1.22.1
+110/tcp open  pop3     Dovecot pop3d
+|_pop3-capabilities: PIPELINING SASL UIDL STLS AUTH-RESP-CODE RESP-CODES CAPA TOP
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+111/tcp open  rpcbind  2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|_  100000  3,4          111/udp6  rpcbind
+143/tcp open  imap     Dovecot imapd
+|_imap-capabilities: more LOGIN-REFERRALS have IDLE post-login STARTTLS listed ENABLE capabilities LOGINDISABLEDA0001 Pre-login SASL-IR OK ID LITERAL+ IMAP4rev1
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+993/tcp open  imaps?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, TerminalServerCookie: 
+|     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
+|   GenericLines, NULL: 
+|     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot (Debian) ready.
+|   GetRequest: 
+|     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
+|     BAD Command received in invalid state.
+|   HTTPOptions: 
+|     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
+|     BAD Command received in invalid state.
+|   RTSPRequest: 
+|     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
+|     BAD Command received in invalid state.
+|_    OPTIONS RTSP/1.0
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+995/tcp open  pop3s?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, Help, NULL, RPCCheck, RTSPRequest, SSLSessionReq, TerminalServerCookie: 
+|_    +OK Dovecot (Debian) ready.
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+MAC Address: 02:DD:7B:88:3D:75 (Unknown)
+Device type: general purpose
+Running: Linux 5.X
+OS CPE: cpe:/o:linux:linux_kernel:5
+OS details: Linux 5.0 - 5.4
+Network Distance: 1 hop
+Service Info: Host:  debra2.thm.local; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   6.16 ms 10.10.219.233
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 22.77 seconds
+\end{lstlisting}
+\end{commandbox}
+
+\end{document}

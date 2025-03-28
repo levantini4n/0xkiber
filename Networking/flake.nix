@@ -52,17 +52,12 @@
           echo "✅ Compilation complete!"
         '';
         
-        view-script = pkgs.writeShellScriptBin "view" ''
-          echo "🔍 Opening PDF with mupdf..."
-          mupdf main.pdf
-        '';
       in {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             texlive-env
             gnused
             compile-script
-            view-script      # Custom view command
 
             # For diagram generation
             graphviz         # ER diagrams

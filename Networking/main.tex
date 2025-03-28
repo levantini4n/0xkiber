@@ -185,7 +185,7 @@ Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds
 I sometimes use this one instead of \texttt{-sV} because it runs \textit{default scripts}\footnote{Default NSE Scripts, \href{https://nmap.org/nsedoc/categories/default.html}{Nmap.org}}, which can give out additional information depending on the services running on the target. You can see a comparison in outputs between the two flags in the two boxes below.
 \begin{commandbox}[Default Script Scan]
 % Command with comment - note that # starts a comment that will be colored green
-\begin{lstlisting}[language=bash, basicstyle=\scriptsize\ttfamily\color{warningcolor}]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\scriptsize\ttfamily\color{warningcolor}, breaklines=true, breakindent=0pt]
 $ sudo nmap -p- -sC {target_IP} # Do you notice how I had to scan all ports, not just the top 1000 most common?
 \end{lstlisting}
 

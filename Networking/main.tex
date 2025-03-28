@@ -19,6 +19,8 @@
 \usepackage{multirow}          
 \usepackage{wrapfig}          
 \usepackage{microtype}        
+\usepackage{pdfpages}  % Add this to your package imports
+\usepackage{bookmark}  % Add this to your package imports
 
 % ===== COLOR DEFINITIONS =====
 % Standard document colors
@@ -143,7 +145,7 @@
 \section{Basic Nmap Commands}
 
 % ===== SERVICE VERSION DETECTION SECTION =====
-\subsection{Service Version Detection (-sV)}
+\subsection{Service and Version Detection (-sV)}
 
 This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
 \begin{commandbox}[Service Version Detection]
@@ -270,4 +272,51 @@ Nmap done: 1 IP address (1 host up) scanned in 13.00 seconds
 \end{lstlisting}
 \end{commandbox}
 
+% \clearpage
+
+% ===== OS DETECTION SCAN SECTION =====
+\subsection{OS Detection (-O)}
+
+Nmap sends a series of TCP and UDP packets to the remote host and examines practically every bit in the responses.
+
+\begin{commandbox}[OS Detection Scan]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+$ sudo nmap -O {target_IP}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash, style=bash]
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-03-28 18:41 +03
+Nmap scan report for # {redacted}
+Host is up (0.0044s latency).
+Not shown: 994 closed tcp ports (reset)
+PORT     STATE    SERVICE
+21/tcp   filtered ftp
+22/tcp   filtered ssh
+23/tcp   filtered telnet
+53/tcp   open     domain
+80/tcp   open     http
+8022/tcp filtered oa-system
+MAC Address: # {redacted}
+Device type: general purpose
+Running: Linux 3.X|4.X|5.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
+OS details: Linux 3.10 - 4.11, Linux 5.10 - 5.13
+Network Distance: 1 hop
+\end{lstlisting}
+\end{commandbox}
+\clearpage
+
+% Save current position in main document
+\label{before-aggressive-scan}
+
+% Place the phantom section before including the PDF
+\clearpage  % Ensure we're on a new page
+\phantomsection  % Place anchor here at the top of the page
+\addcontentsline{toc}{subsection}{\numberline {1.4}Aggressive Scan (-A)}
+
+% Just include the PDF without adding any extra content
+\includepdf[pages=-]{aggressive-scan.pdf}
+
 \end{document}
+
+% Create a separate file called aggressive-scan.tex with the following content:

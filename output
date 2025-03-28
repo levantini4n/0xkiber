@@ -1,0 +1,81 @@
+$ sudo nmap -sV {target_IP} # This is the Service Detection flag, it'll tell you the name and description of the identified services.
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
+Nmap scan report for 10.10.171.202
+Host is up (0.00011s latency).
+Not shown: 994 closed ports
+PORT     STATE SERVICE    VERSION
+7/tcp    open  echo
+9/tcp    open  tcpwrapped
+13/tcp   open  daytime?
+17/tcp   open  qotd?
+22/tcp   open  ssh        OpenSSH 9.6p1 Ubuntu 3ubuntu13.5 (Ubuntu Linux; protocol 2.0)
+8008/tcp open  http       lighttpd 1.4.74
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port13-TCP:V=7.80%I=7%D=3/28%Time=67E64169%P=x86_64-pc-linux-gnu%r(NULL
+SF:,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(GenericLines,1D,
+SF:"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(GetRequest,1D,"Fri\x
+SF:20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(HTTPOptions,1D,"Fri\x20Mar
+SF:\x2028\x2006:27:53\x20UTC\x202025\n")%r(RTSPRequest,1D,"Fri\x20Mar\x202
+SF:8\x2006:27:53\x20UTC\x202025\n")%r(RPCCheck,1D,"Fri\x20Mar\x2028\x2006:
+SF:27:53\x20UTC\x202025\n")%r(DNSVersionBindReqTCP,1D,"Fri\x20Mar\x2028\x2
+SF:006:27:53\x20UTC\x202025\n")%r(DNSStatusRequestTCP,1D,"Fri\x20Mar\x2028
+SF:\x2006:27:53\x20UTC\x202025\n")%r(Help,1D,"Fri\x20Mar\x2028\x2006:27:53
+SF:\x20UTC\x202025\n")%r(SSLSessionReq,1D,"Fri\x20Mar\x2028\x2006:27:53\x2
+SF:0UTC\x202025\n")%r(TerminalServerCookie,1D,"Fri\x20Mar\x2028\x2006:27:5
+SF:3\x20UTC\x202025\n")%r(TLSSessionReq,1D,"Fri\x20Mar\x2028\x2006:27:53\x
+SF:20UTC\x202025\n")%r(Kerberos,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x2
+SF:02025\n")%r(SMBProgNeg,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\
+SF:n")%r(X11Probe,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(Fo
+SF:urOhFourRequest,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(L
+SF:PDString,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(LDAPSear
+SF:chReq,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(LDAPBindReq
+SF:,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(SIPOptions,1D,"F
+SF:ri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(LANDesk-RC,1D,"Fri\x20
+SF:Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(TerminalServer,1D,"Fri\x20Ma
+SF:r\x2028\x2006:27:53\x20UTC\x202025\n")%r(NCP,1D,"Fri\x20Mar\x2028\x2006
+SF::27:53\x20UTC\x202025\n")%r(NotesRPC,1D,"Fri\x20Mar\x2028\x2006:27:53\x
+SF:20UTC\x202025\n")%r(JavaRMI,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x20
+SF:2025\n")%r(WMSRequest,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n
+SF:")%r(oracle-tns,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(m
+SF:s-sql-s,1D,"Fri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(afp,1D,"F
+SF:ri\x20Mar\x2028\x2006:27:53\x20UTC\x202025\n")%r(giop,1D,"Fri\x20Mar\x2
+SF:028\x2006:27:53\x20UTC\x202025\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port17-TCP:V=7.80%I=7%D=3/28%Time=67E6416A%P=x86_64-pc-linux-gnu%r(NULL
+SF:,12B,"We\x20should\x20be\x20careful\x20to\x20get\x20out\x20of\x20an\x20
+SF:experience\x20only\x20the\x20wisdom\x20that\x20is\nin\x20it\x20-\x20and
+SF:\x20stay\x20there,\x20lest\x20we\x20be\x20like\x20the\x20cat\x20that\x2
+SF:0sits\x20down\x20on\x20a\x20hot\nstove-lid\.\x20\x20She\x20will\x20neve
+SF:r\x20sit\x20down\x20on\x20a\x20hot\x20stove-lid\x20again\x20-\x20and\x2
+SF:0that\nis\x20well;\x20but\x20also\x20she\x20will\x20never\x20sit\x20dow
+SF:n\x20on\x20a\x20cold\x20one\x20any\x20more\.\n\t\t--\x20Mark\x20Twain\n
+SF:")%r(GenericLines,56,"You\x20will\x20lose\x20your\x20present\x20job\x20
+SF:and\x20have\x20to\x20become\x20a\x20door\x20to\x20door\x20mayonnaise\ns
+SF:alesman\.\n")%r(GetRequest,34,"If\x20you\x20sow\x20your\x20wild\x20oats
+SF:,\x20hope\x20for\x20a\x20crop\x20failure\.\n")%r(HTTPOptions,80,"My\x20
+SF:only\x20love\x20sprung\x20from\x20my\x20only\x20hate!\nToo\x20early\x20
+SF:seen\x20unknown,\x20and\x20known\x20too\x20late!\n\t\t--\x20William\x20
+SF:Shakespeare,\x20\"Romeo\x20and\x20Juliet\"\n")%r(RTSPRequest,129,"Q:\tH
+SF:ow\x20many\x20DEC\x20repairman\x20does\x20it\x20take\x20to\x20fix\x20a\
+SF:x20flat\?\nA:\tFive;\x20four\x20to\x20hold\x20the\x20car\x20up\x20and\x
+SF:20one\x20to\x20swap\x20tires\.\n\nQ:\tHow\x20long\x20does\x20it\x20take
+SF:\?\nA:\tIt's\x20indeterminate\.\n\tIt\x20will\x20depend\x20upon\x20how\
+SF:x20many\x20flats\x20they've\x20brought\x20with\x20them\.\n\nQ:\tWhat\x2
+SF:0happens\x20if\x20you've\x20got\x20TWO\x20flats\?\nA:\tThey\x20replace\
+SF:x20your\x20generator\.\n")%r(RPCCheck,3F,"Perfect\x20day\x20for\x20scru
+SF:bbing\x20the\x20floor\x20and\x20other\x20exciting\x20things\.\n")%r(DNS
+SF:VersionBindReqTCP,F,"Chess\x20tonight\.\n")%r(DNSStatusRequestTCP,D4,"Q
+SF::\tWhere's\x20the\x20Lone\x20Ranger\x20take\x20his\x20garbage\?\nA:\tTo
+SF:\x20the\x20dump,\x20to\x20the\x20dump,\x20to\x20the\x20dump\x20dump\x20
+SF:dump!\n\nQ:\tWhat's\x20the\x20Pink\x20Panther\x20say\x20when\x20he\x20s
+SF:teps\x20on\x20an\x20ant\x20hill\?\nA:\tDead\x20ant,\x20dead\x20ant,\x20
+SF:dead\x20ant\x20dead\x20ant\x20dead\x20ant\.\.\.\n")%r(Help,41,"Truth\x2
+SF:0will\x20out\x20this\x20morning\.\x20\x20\(Which\x20may\x20really\x20me
+SF:ss\x20things\x20up\.\)\n");
+MAC Address: 02:89:EC:B7:74:EF (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds
+

@@ -1,0 +1,160 @@
+\documentclass[11pt,a4paper]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[breakable,skins,theorems]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{microtype}
+
+% Custom colors
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
+\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}
+\definecolor{commentcolor}{rgb}{0.0,0.5,0.0}
+\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}
+\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}
+\definecolor{warningcolor}{rgb}{0.8,0.3,0.0}
+\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}
+
+% Custom colors - adding Kali-like terminal colors
+\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}
+\definecolor{kalitext}{rgb}{0.4,0.7,1.0}  % Blue for all text
+\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}  % Cyan for prompt
+\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}  % Blue for commands
+\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}  % Blue for output
+\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}  % Blue for URLs
+\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}  % Blue for headers
+
+% Style settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=sectioncolor,
+    urlcolor=blue,
+    citecolor=green
+}
+
+% Header & footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Cybersecurity Notes}
+\lhead{Nmap Cheatsheet}
+\rfoot{Page \thepage}
+\lfoot{\today}
+
+% Title formatting
+\titleformat{\section}
+{\color{sectioncolor}\normalfont\Large\bfseries}
+{\color{sectioncolor}\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\color{subsectioncolor}\normalfont\large\bfseries}
+{\color{subsectioncolor}\thesubsection}{1em}{}
+
+% Custom environments
+\newenvironment{commandbox}[1][]{
+    \begin{tcolorbox}[
+        colback=kalibackground,
+        colframe=commandcolor,
+        fonttitle=\bfseries\color{white},
+        title=#1,
+        breakable=true
+    ]
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{tipbox}[1][Tip]{
+    \begin{tcolorbox}[
+        colback=tiphighlight,
+        colframe=warningcolor,
+        fonttitle=\bfseries\color{white},
+        title=#1
+    ]
+}{
+    \end{tcolorbox}
+}
+
+% Code listing settings
+\lstset{
+    backgroundcolor=\color{kalibackground},
+    basicstyle=\footnotesize\ttfamily\color{warningcolor},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    commentstyle=\color{kalitext},
+    keepspaces=true,
+    keywordstyle=\color{kalitext},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    moredelim=[il][\color{commentcolor}]{\$\ },
+    stringstyle=\color{kalitext},
+    moredelim=[is][\color{kalitext}]{§}{§}
+}
+
+\begin{document}
+
+\begin{center}
+    \begin{tcolorbox}[width=\textwidth, colback=sectioncolor!20, colframe=sectioncolor]
+        \centering
+        {\Huge \textbf{Nmap Cheatsheet}}\\[0.5em]
+    \end{tcolorbox}
+\end{center}
+
+\tableofcontents
+\clearpage
+
+\vspace{1em}
+\begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
+    This document shall contain everything I have learned so far about nmap. I must keep it up-to-date because I feel a bit lost in this cybersecurity journey to be frank.
+\end{tcolorbox}
+
+\section{Basic Nmap Commands}
+
+\subsection{Service Version Detection (-sV)}
+
+This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
+\begin{commandbox}[Service Version Detection]
+\begin{lstlisting}[language=bash]
+$ sudo nmap -sV {target_IP}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+§Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
+Nmap scan report for 10.10.171.202
+Host is up (0.00011s latency).
+Not shown: 994 closed ports
+PORT     STATE SERVICE    VERSION
+7/tcp    open  echo
+9/tcp    open  tcpwrapped
+13/tcp   open  daytime?
+17/tcp   open  qotd?
+22/tcp   open  ssh        OpenSSH 9.6p1 Ubuntu 3ubuntu13.5 (Ubuntu Linux; protocol 2.0)
+8008/tcp open  http       lighttpd 1.4.74
+
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+[Detailed fingerprint data omitted for brevity]
+
+MAC Address: 02:89:EC:B7:74:EF (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds§
+\end{lstlisting}
+\end{commandbox}
+
+\end{document}

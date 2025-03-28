@@ -61,6 +61,8 @@
           packages = with pkgs; [
             texlive-env
             gnused
+            compile-script
+            view-script      # Custom view command
 
             # For diagram generation
             graphviz         # ER diagrams

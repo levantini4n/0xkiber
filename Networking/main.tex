@@ -109,9 +109,12 @@
     showtabs=false,             
     tabsize=2,                    
     moredelim=[il][\color{commentcolor}]{\$\ }, 
-    stringstyle=\color{kalitext},  
-    moredelim=[is][\color{kalitext}]{§}{§},  
-    morecomment=[l][\color{commentcolor}]{\#}  
+    stringstyle=\color{kalitext}
+}
+
+% Add a specific setting for bash listings where # should be a comment
+\lstdefinestyle{bash}{
+    morecomment=[l][\color{commentcolor}]{\#}
 }
 
 % ===== CUSTOM COMMANDS =====
@@ -145,13 +148,13 @@
 This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
 \begin{commandbox}[Service Version Detection]
 % Command input with warningcolor (orange/rust)
-\begin{lstlisting}[language=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
 $ sudo nmap -sV {target_IP}
 \end{lstlisting}
 
 % Command output with kalitext color (blue)
-\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}]
-§Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash]
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
 Nmap scan report for 10.10.171.202
 Host is up (0.00011s latency).
 Not shown: 994 closed ports
@@ -164,13 +167,13 @@ PORT     STATE SERVICE    VERSION
 8008/tcp open  http       lighttpd 1.4.74
 
 2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
-[Detailed fingerprint data omitted for brevity]
+# [Detailed fingerprint data omitted for brevity]
 
 MAC Address: 02:89:EC:B7:74:EF (Unknown)
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds§
+Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds
 \end{lstlisting}
 \end{commandbox}
 
@@ -187,7 +190,7 @@ $ sudo nmap -p- -sC {target_IP} # Do you notice how I had to scan all ports, not
 \end{lstlisting}
 
 \begin{lstlisting}[basicstyle=\scriptsize\ttfamily\color{kalitext}]
-§Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:22 GMT
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:22 GMT
 Nmap scan report for 10.10.219.233
 Host is up (0.00024s latency).
 Not shown: 65526 closed ports
@@ -233,7 +236,7 @@ PORT    STATE SERVICE
 |_Not valid after:  2031-08-08T12:10:58
 MAC Address: 02:DD:7B:88:3D:75 (Unknown)
 
-Nmap done: 1 IP address (1 host up) scanned in 20.77 seconds§
+Nmap done: 1 IP address (1 host up) scanned in 20.77 seconds
 \end{lstlisting}
 \end{commandbox}
 
@@ -245,7 +248,7 @@ $ sudo nmap -sV {target_IP}
 \end{lstlisting}
 
 \begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}]
-§Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:21 GMT
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:21 GMT
 Nmap scan report for 10.10.219.233
 Host is up (0.0062s latency).
 Not shown: 991 closed ports
@@ -263,7 +266,7 @@ MAC Address: 02:DD:7B:88:3D:75 (Unknown)
 Service Info: Host:  debra2.thm.local; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 13.00 seconds§
+Nmap done: 1 IP address (1 host up) scanned in 13.00 seconds
 \end{lstlisting}
 \end{commandbox}
 

@@ -44,6 +44,18 @@
             collection-latexextra  # This includes tcolorbox and its libraries
             ;
         };
+        
+        # Custom scripts for compile and view commands
+        compile-script = pkgs.writeShellScriptBin "compile" ''
+          echo "⚡ Compiling LaTeX document..."
+          latexmk -pdf main.tex && pdflatex main.tex && pdflatex main.tex
+          echo "✅ Compilation complete!"
+        '';
+        
+        view-script = pkgs.writeShellScriptBin "view" ''
+          echo "🔍 Opening PDF with mupdf..."
+          mupdf main.pdf
+        '';
       in {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -57,7 +69,9 @@
 
           shellHook = ''
             echo "⚡ LaTeX environment ready!"
-            echo "Run: latexmk -pdf main.tex"
+            echo "Commands:"
+            echo "  compile - Run latexmk and pdflatex to build the document"
+            echo "  view    - Open the PDF with mupdf"
           '';
         };
       });

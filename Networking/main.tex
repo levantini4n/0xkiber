@@ -106,6 +106,9 @@
     moredelim=[is][\color{kalitext}]{§}{§}
 }
 
+% Add this command definition before \begin{document}
+\newcommand{\sourcelink}[2]{\href{#2}{\textcolor{blue}{#1}}}
+
 \begin{document}
 
 \begin{center}
@@ -129,11 +132,11 @@
 
 This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
 \begin{commandbox}[Service Version Detection]
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash, basicstyle=\small\ttfamily\color{warningcolor}]
 $ sudo nmap -sV {target_IP}
 \end{lstlisting}
 
-\begin{lstlisting}[basicstyle=\ttfamily\small]
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}]
 §Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
 Nmap scan report for 10.10.171.202
 Host is up (0.00011s latency).
@@ -154,6 +157,97 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds§
+\end{lstlisting}
+\end{commandbox}
+
+\clearpage
+
+\subsection{Default Script Scan (-sC)}
+
+I sometimes use this one instead of \texttt{-sV} because it runs \textit{default scripts}\footnote{Default NSE Scripts, \href{https://nmap.org/nsedoc/categories/default.html}{Nmap.org}, 2023.}, which can give out additional information depending on the services running on the target, you can see a comparison in outputs between the two flags in the two boxes below.
+\begin{commandbox}[Default Script Scan]
+\begin{lstlisting}[language=bash, basicstyle=\scriptsize\ttfamily\color{warningcolor}]
+$ sudo nmap -sC {target_IP}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily\color{kalitext}]
+§Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:22 GMT
+Nmap scan report for 10.10.219.233
+Host is up (0.00024s latency).
+Not shown: 65526 closed ports
+PORT    STATE SERVICE
+22/tcp  open  ssh
+25/tcp  open  smtp
+|_smtp-commands: debra2.thm.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, CHUNKING, 
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+|_ssl-date: TLS randomness does not represent time
+53/tcp  open  domain
+| dns-nsid: 
+|_  bind.version: 9.18.28-1~deb12u2-Debian
+80/tcp  open  http
+|_http-title: Welcome to nginx on Debian!
+110/tcp open  pop3
+|_pop3-capabilities: PIPELINING SASL UIDL STLS AUTH-RESP-CODE RESP-CODES CAPA TOP
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+111/tcp open  rpcbind
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|_  100000  3,4          111/udp6  rpcbind
+143/tcp open  imap
+|_imap-capabilities: more LOGIN-REFERRALS have IDLE post-login STARTTLS listed ENABLE capabilities LOGINDISABLEDA0001 Pre-login SASL-IR OK ID LITERAL+ IMAP4rev1
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+993/tcp open  imaps
+|_imap-capabilities: LOGIN-REFERRALS more IDLE capabilities OK post-login ENABLE listed have Pre-login SASL-IR AUTH=PLAINA0001 ID LITERAL+ IMAP4rev1
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+995/tcp open  pop3s
+|_pop3-capabilities: PIPELINING SASL(PLAIN) UIDL USER AUTH-RESP-CODE RESP-CODES CAPA TOP
+| ssl-cert: Subject: commonName=debra2.thm.local
+| Not valid before: 2021-08-10T12:10:58
+|_Not valid after:  2031-08-08T12:10:58
+MAC Address: 02:DD:7B:88:3D:75 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 20.77 seconds§
+\end{lstlisting}
+\end{commandbox}
+
+\clearpage
+
+\begin{commandbox}[Service Version Detection for Comparison]
+\begin{lstlisting}[language=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+$ sudo nmap -sV {target_IP}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}]
+§Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 09:21 GMT
+Nmap scan report for 10.10.219.233
+Host is up (0.0062s latency).
+Not shown: 991 closed ports
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
+25/tcp  open  smtp     Postfix smtpd
+53/tcp  open  domain   ISC BIND 9.18.28-1~deb12u2 (Debian Linux)
+80/tcp  open  http     nginx 1.22.1
+110/tcp open  pop3     Dovecot pop3d
+111/tcp open  rpcbind  2-4 (RPC #100000)
+143/tcp open  imap     Dovecot imapd
+993/tcp open  ssl/imap Dovecot imapd
+995/tcp open  ssl/pop3 Dovecot pop3d
+MAC Address: 02:DD:7B:88:3D:75 (Unknown)
+Service Info: Host:  debra2.thm.local; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 13.00 seconds§
 \end{lstlisting}
 \end{commandbox}
 

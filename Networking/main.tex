@@ -23,10 +23,10 @@
 \definecolor{codebackground}{rgb}{0.95,0.95,0.95}
 \definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
 \definecolor{outputcolor}{rgb}{0.0,0.0,0.6}
-\definecolor{commentcolor}{rgb}{0.0,0.5,0.0}
+\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}  % Lighter green for comments
 \definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}
 \definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}
-\definecolor{warningcolor}{rgb}{0.8,0.3,0.0}
+\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}  % Lighter orange/rust color
 \definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}
 
 % Custom colors - adding Kali-like terminal colors
@@ -94,7 +94,7 @@
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
-    commentstyle=\color{kalitext},
+    commentstyle=\color{commentcolor},
     keepspaces=true,
     keywordstyle=\color{kalitext},
     showspaces=false,
@@ -103,7 +103,8 @@
     tabsize=2,
     moredelim=[il][\color{commentcolor}]{\$\ },
     stringstyle=\color{kalitext},
-    moredelim=[is][\color{kalitext}]{§}{§}
+    moredelim=[is][\color{kalitext}]{§}{§},
+    morecomment=[l][\color{commentcolor}]{\#}
 }
 
 % Add this command definition before \begin{document}

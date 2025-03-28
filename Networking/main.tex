@@ -1,60 +1,64 @@
 \documentclass[11pt,a4paper]{article}
 
-% Essential packages
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[margin=1in]{geometry}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{listings}
-\usepackage[breakable,skins,theorems]{tcolorbox}
-\usepackage{titlesec}
-\usepackage{fancyhdr}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{microtype}
+% ===== PACKAGE IMPORTS =====
+% Essential packages for document formatting and functionality
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}       
+\usepackage{lmodern}           
+\usepackage[margin=1in]{geometry}  
+\usepackage{xcolor}            
+\usepackage{colortbl}       
+\usepackage{hyperref}      
+\usepackage{graphicx}     
+\usepackage{enumitem}       
+\usepackage{booktabs}      
+\usepackage{listings}       
+\usepackage[breakable,skins,theorems]{tcolorbox}  
+\usepackage{titlesec}         
+\usepackage{fancyhdr}         
+\usepackage{multirow}          
+\usepackage{wrapfig}          
+\usepackage{microtype}        
 
-% Custom colors
-\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
-\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
-\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}
-\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}  % Lighter green for comments
-\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}
-\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}
-\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}  % Lighter orange/rust color
-\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}
+% ===== COLOR DEFINITIONS =====
+% Standard document colors
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}  
+\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}       
+\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}        
+\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}      
+\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}       
+\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}    
+\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}       
+\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}     
 
-% Custom colors - adding Kali-like terminal colors
-\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}
-\definecolor{kalitext}{rgb}{0.4,0.7,1.0}  % Blue for all text
-\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}  % Cyan for prompt
-\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}  % Blue for commands
-\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}  % Blue for output
-\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}  % Blue for URLs
-\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}  % Blue for headers
+% terminal output styling
+\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}  
+\definecolor{kalitext}{rgb}{0.4,0.7,1.0}           
+\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}        
+\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}        
+\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}      
+\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}         
+\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}     
 
-% Style settings
+% ===== HYPERREF SETTINGS =====
+% Configure hyperlinks appearance
 \hypersetup{
-    colorlinks=true,
-    linkcolor=sectioncolor,
-    urlcolor=blue,
-    citecolor=green
+    colorlinks=true,          
+    linkcolor=sectioncolor,    
+    urlcolor=blue,            
+    citecolor=green           
 }
 
-% Header & footer
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{Cybersecurity Notes}
-\lhead{Nmap Cheatsheet}
-\rfoot{Page \thepage}
-\lfoot{\today}
+% ===== HEADER & FOOTER SETUP =====
+\pagestyle{fancy}              % Use fancy page style
+\fancyhf{}                     % Clear all header/footer fields
+\rhead{Cybersecurity Notes}    % Right header
+\lhead{Nmap Cheatsheet}        % Left header
+\rfoot{Page \thepage}          % Right footer
+% \lfoot{\today}                 % Left footer with current date
 
-% Title formatting
+% ===== SECTION TITLE FORMATTING =====
+% Format section headings with custom colors
 \titleformat{\section}
 {\color{sectioncolor}\normalfont\Large\bfseries}
 {\color{sectioncolor}\thesection}{1em}{}
@@ -63,55 +67,60 @@
 {\color{subsectioncolor}\normalfont\large\bfseries}
 {\color{subsectioncolor}\thesubsection}{1em}{}
 
-% Custom environments
+% ===== CUSTOM ENVIRONMENTS =====
+% Command box environment for terminal commands and output
 \newenvironment{commandbox}[1][]{
     \begin{tcolorbox}[
-        colback=kalibackground,
-        colframe=commandcolor,
-        fonttitle=\bfseries\color{white},
-        title=#1,
-        breakable=true
+        colback=kalibackground,   
+        colframe=commandcolor,    
+        fonttitle=\bfseries\color{white},  
+        title=#1,               
+        breakable=true           
     ]
 }{
     \end{tcolorbox}
 }
 
+% Tip box environment for highlighting important information
 \newenvironment{tipbox}[1][Tip]{
     \begin{tcolorbox}[
-        colback=tiphighlight,
-        colframe=warningcolor,
-        fonttitle=\bfseries\color{white},
-        title=#1
+        colback=tiphighlight,   
+        colframe=warningcolor,    
+        fonttitle=\bfseries\color{white},  
+        title=#1               
     ]
 }{
     \end{tcolorbox}
 }
 
-% Code listing settings
+% ===== CODE LISTING SETTINGS =====
+% Configure how code listings appear
 \lstset{
     backgroundcolor=\color{kalibackground},
-    basicstyle=\footnotesize\ttfamily\color{warningcolor},
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    commentstyle=\color{commentcolor},
-    keepspaces=true,
-    keywordstyle=\color{kalitext},
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2,
-    moredelim=[il][\color{commentcolor}]{\$\ },
-    stringstyle=\color{kalitext},
-    moredelim=[is][\color{kalitext}]{§}{§},
-    morecomment=[l][\color{commentcolor}]{\#}
+    basicstyle=\footnotesize\ttfamily\color{warningcolor},  
+    breakatwhitespace=false,       
+    breaklines=true,              
+    captionpos=b,                
+    commentstyle=\color{commentcolor},  
+    keepspaces=true,               
+    keywordstyle=\color{kalitext}, 
+    showspaces=false,              
+    showstringspaces=false,       
+    showtabs=false,             
+    tabsize=2,                    
+    moredelim=[il][\color{commentcolor}]{\$\ }, 
+    stringstyle=\color{kalitext},  
+    moredelim=[is][\color{kalitext}]{§}{§},  
+    morecomment=[l][\color{commentcolor}]{\#}  
 }
 
-% Add this command definition before \begin{document}
+% ===== CUSTOM COMMANDS =====
+% Command for source links with consistent styling
 \newcommand{\sourcelink}[2]{\href{#2}{\textcolor{blue}{#1}}}
 
 \begin{document}
 
+% ===== TITLE SECTION =====
 \begin{center}
     \begin{tcolorbox}[width=\textwidth, colback=sectioncolor!20, colframe=sectioncolor]
         \centering
@@ -122,6 +131,7 @@
 \tableofcontents
 \clearpage
 
+% ===== INTRODUCTION =====
 \vspace{1em}
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
     This document shall contain everything I have learned so far about nmap. I must keep it up-to-date because I feel a bit lost in this cybersecurity journey to be frank.
@@ -129,14 +139,17 @@
 
 \section{Basic Nmap Commands}
 
+% ===== SERVICE VERSION DETECTION SECTION =====
 \subsection{Service Version Detection (-sV)}
 
 This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
 \begin{commandbox}[Service Version Detection]
+% Command input with warningcolor (orange/rust)
 \begin{lstlisting}[language=bash, basicstyle=\small\ttfamily\color{warningcolor}]
 $ sudo nmap -sV {target_IP}
 \end{lstlisting}
 
+% Command output with kalitext color (blue)
 \begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}]
 §Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
 Nmap scan report for 10.10.171.202
@@ -163,10 +176,12 @@ Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds§
 
 \clearpage
 
+% ===== DEFAULT SCRIPT SCAN SECTION =====
 \subsection{Default Script Scan (-sC)}
 
 I sometimes use this one instead of \texttt{-sV} because it runs \textit{default scripts}\footnote{Default NSE Scripts, \href{https://nmap.org/nsedoc/categories/default.html}{Nmap.org}}, which can give out additional information depending on the services running on the target. You can see a comparison in outputs between the two flags in the two boxes below.
 \begin{commandbox}[Default Script Scan]
+% Command with comment - note that # starts a comment that will be colored green
 \begin{lstlisting}[language=bash, basicstyle=\scriptsize\ttfamily\color{warningcolor}]
 $ sudo nmap -p- -sC {target_IP} # Do you notice how I had to scan all ports, not just the top 1000 most common?
 \end{lstlisting}

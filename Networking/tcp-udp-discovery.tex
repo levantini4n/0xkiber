@@ -13,7 +13,7 @@
 \usepackage{fancyhdr}  % Add this for footer control
 
 % Set page dimensions - keep your 900mm height
-\usepackage[paperwidth=210mm,paperheight=570mm,top=1cm,bottom=2cm,left=1cm,right=1cm]{geometry}
+\usepackage[paperwidth=210mm,paperheight=900mm,top=1cm,bottom=2cm,left=1cm,right=1cm]{geometry}
 
 % Color definitions
 \definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
@@ -83,7 +83,7 @@
 
 \subsubsection{TCP SYN Scan (-PS)}
 
-Nmap will send TCP SYN packets and won't complete the TCP 3-way handshake even if the port is open, as shown in the figure below the terminal's output.
+Nmap will send TCP SYN packets and won't complete the TCP 3-way handshake even if the port is open, as shown in the figure below the terminal's output. By default, Nmap will send the SYN packet to port 80.
 
 \begin{commandbox}[TCP SYN Scan (-PS)]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -110,10 +110,13 @@ Nmap done: 256 IP addresses (5 hosts up) scanned in 17.38 seconds
 \includegraphics[width=0.7\textwidth]{SYNPack.png}
 \captionof{figure}{SYN Packet sent for Host Discovery, the user has root privileges.}
 \end{center}
-
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{HOST_SYN.png}
+    \captionof{figure}{Do you notice how Nmap is sending the SYN packets to port 80? Twice? For each IP in the specified subnet.}
+    \end{center}
 \subsubsection{TCP ACK Scan (-PA)}
 
-As you have guessed, this sends a packet with an ACK flag set.
+As you have guessed, this sends a packet with an ACK flag set. Again, by default, Nmap will send the ACK packet to port 80.
 
 \begin{commandbox}[TCP ACK Scan (-PA)]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -138,9 +141,12 @@ Nmap done: 256 IP addresses (5 hosts up) scanned in 29.89 seconds
     \includegraphics[width=0.7\textwidth]{ACKFlag.png}
     \captionof{figure}{TCP Packet with Ack flag set sent for Host Discovery, doesn't matter whether the port is open or closed}
     \end{center}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{HOST_ACK.png}
+        \end{center}
 \subsubsection{UDP Scan (-PU)}
 
-Finally, we can use UDP to discover if the host is online. Contrary to TCP SYN ping, sending a UDP packet to an open port is not expected to lead to any reply. However, if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the target system is up and available.
+Finally, we can use UDP to discover if the host is online. Contrary to TCP SYN ping, sending a UDP packet to an open port is not expected to lead to any reply. However, if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the target system is up and available, and that's exactly why Nmap will be sending to uncommon UDP ports, so that an ICMP destination unreachable is triggered.
 
 \begin{commandbox}[UDP Scan (-PU)]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -170,4 +176,8 @@ Nmap done: 256 IP addresses (5 hosts up) scanned in 9.20 seconds
         \includegraphics[width=0.7\textwidth]{UDP-Closed.png}
         \captionof{figure}{UDP Packet sent for Host Discovery, port is closed and we get a port unreachable packet.}
         \end{center}
+        \begin{center}
+            \includegraphics[width=0.7\textwidth]{HOST_UDP.png}
+            \captionof{figure}{Do you notice how Nmap is sending the UDP packets to uncommon ports multiple times for each IP address in the specified subnet?}
+            \end{center}
 \end{document} 

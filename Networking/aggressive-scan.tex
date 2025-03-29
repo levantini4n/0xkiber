@@ -28,6 +28,7 @@
 \definecolor{commentcolor}{rgb}{0.4,0.8,0.4}      
 \definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}       
 \definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}    
+\definecolor{subsubsectioncolor}{rgb}{0.0,0.5,0.7}  % Added missing subsubsection color
 \definecolor{warningcolor}{rgb}{0.9,0.5,0.3}       
 \definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}     
 
@@ -49,6 +50,10 @@
 \titleformat{\subsection}
 {\color{subsectioncolor}\normalfont\huge\bfseries}
 {\color{subsectioncolor}\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+{\color{subsubsectioncolor}\normalfont\Large\bfseries}
+{\color{subsubsectioncolor}\thesubsubsection}{1em}{}
 
 % ===== CUSTOM ENVIRONMENTS =====
 % Command box environment for terminal commands and output
@@ -88,6 +93,9 @@
     morecomment=[l][\color{commentcolor}]{\#}
 }
 
+% Increase the default font size for the entire document
+\AtBeginDocument{\fontsize{14pt}{18pt}\selectfont}
+
 \begin{document}
 % No page numbers or headers on this special page
 \thispagestyle{empty}
@@ -96,9 +104,9 @@
 \setcounter{section}{1}
 \setcounter{subsection}{3}
 
-\subsection{\huge Aggressive Scan (-A)}
+\subsection{\huge \color{subsectioncolor}Aggressive Scan}
 
-{\LARGE What if you can have both \textbf{-O}, \textbf{-sV} and some more in one option? That would be \textbf{-A}. This option enables OS detection, version scanning, and traceroute, among other things.}
+What if you can have both OS detection and version detection with a single scan? That's what the aggressive scan is for. It enables OS detection, version detection, script scanning, and traceroute.
 
 \begin{commandbox}[Aggressive Scan]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\normalsize\ttfamily\color{warningcolor}]

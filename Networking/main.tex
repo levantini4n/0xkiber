@@ -496,8 +496,20 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
 
     \vspace{1em}
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
-    Bonus: if you were to NOT specify one of the techniques above, just used \texttt{\textit{\textbf{nmap -sn}}} with no other flags, Nmap’s default behaviour would be to reverse-DNS online hosts. And to skip that, you can use \texttt{\textit{\textbf{-n}}} flag.
+    Bonus: if you were to NOT specify one of the techniques above, just used \texttt{\textit{\textbf{nmap -sn}}} with no other flags, Nmap's default behaviour would be to reverse-DNS online hosts. And to skip that, you can use \texttt{\textit{\textbf{-n}}} flag.
 \end{tcolorbox}
+\clearpage
+
+% Save current position in main document
+\label{before-tcp-udp-discovery}
+
+% Place the phantom section before including the PDF
+\clearpage  % Ensure we're on a new page
+\phantomsection  % Place anchor here at the top of the page
+\addcontentsline{toc}{subsection}{\numberline {2.3}TCP/UDP Host Discovery}
+
+% Just include the PDF without adding any extra content
+\includepdf[pages=-]{tcp-udp-discovery.pdf}
 
 \end{document}
 

@@ -132,6 +132,9 @@
 % Command for source links with consistent styling
 \newcommand{\sourcelink}[2]{\href{#2}{\textcolor{blue}{#1}}}
 
+% Add this before \begin{document}
+\setcounter{tocdepth}{3}  % This makes subsubsections appear in TOC
+
 \begin{document}
 
 % ===== TITLE SECTION =====
@@ -508,7 +511,10 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
 \phantomsection  % Place anchor here at the top of the page
 \addcontentsline{toc}{subsection}{\numberline {2.3}TCP/UDP Host Discovery}
 
+% Add this line to include the subsubsection in the TOC
+\addcontentsline{toc}{subsubsection}{\numberline {2.3.I}TCP SYN Scan (-PS)}
+
 % Just include the PDF without adding any extra content
-\includepdf[pages=-,fitpaper]{tcp-udp-discovery.pdf}
+\includepdf[pages=-, fitpaper]{tcp-udp-discovery.pdf}
 \end{document}
 

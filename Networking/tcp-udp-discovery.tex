@@ -66,7 +66,10 @@
 \begin{document}
 
 \setcounter{section}{2}
-\setcounter{subsection}{3}
+\setcounter{subsection}{2}
+
+% Add this to make subsubsection use Roman numerals
+\renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
 
 \subsection{TCP/UDP Host Discovery}
 

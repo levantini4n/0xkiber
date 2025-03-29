@@ -327,7 +327,7 @@ Network Distance: 1 hop
 \includepdf[pages=-]{aggressive-scan.pdf}
 
 % ===== HOST DISCOVERY COMMANDS SECTION =====
-\section{Host Discovery Commands}
+\section{Host Discovery}
 
 \subsection{ARP Scan (-PR)}
 
@@ -453,9 +453,51 @@ Nmap done: 256 IP addresses (9 hosts up) scanned in 14.88 seconds
 
 \begin{center}
     \includegraphics[width=0.7\textwidth]{timestamp-request.png}
-    \captionof{figure}{Wireshark capture of Timestamp Request packets, a network different from the aforementioned by the way.}
+    \captionof{figure}{Wireshark capture of Timestamp Request packets.}
     \label{fig:timestamp-request}
     \end{center}
+
+\clearpage
+\subsubsection{Address Mask Scan (-PM)}
+
+Similarly, Nmap uses address mask queries (ICMP Type 17) and checks whether it gets an address mask reply (ICMP Type 18).
+
+\begin{commandbox}[ICMP Address Mask Scan (-PM)]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+$ sudo nmap -sn -PM 192.168.100.7/24
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash, style=bash, breaklines=true, breakindent=0pt]
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-03-29 03:53 +03
+Nmap scan report for 192.168.100.1
+Host is up (0.042s latency).
+Nmap scan report for 192.168.100.12
+Host is up (0.21s latency).
+Nmap scan report for 192.168.100.13
+Host is up (0.21s latency).
+Nmap scan report for 192.168.100.15
+Host is up (0.10s latency).
+Nmap scan report for 192.168.100.16
+Host is up (0.19s latency).
+Nmap scan report for 192.168.100.25
+Host is up (0.071s latency).
+Nmap scan report for 192.168.100.28
+Host is up (1.5s latency).
+Nmap scan report for 192.168.100.7
+Host is up.
+Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
+\end{lstlisting}
+\end{commandbox}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{addressmask-request.png}
+    \captionof{figure}{Wireshark capture of Address Mask Request packets.}
+    \label{fig:addressmask-request}
+    \end{center}
+
+    \vspace{1em}
+\begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
+    Bonus: if you were to NOT specify one of the techniques above, just used \texttt{\textit{\textbf{nmap -sn}}} with no other flags, Nmap’s default behaviour would be to reverse-DNS online hosts. And to skip that, you can use \texttt{\textit{\textbf{-n}}} flag.
+\end{tcolorbox}
 
 \end{document}
 

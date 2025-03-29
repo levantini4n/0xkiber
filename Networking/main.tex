@@ -21,6 +21,7 @@
 \usepackage{microtype}        
 \usepackage{pdfpages}  % Add this to your package imports
 \usepackage{bookmark}  % Add this to your package imports
+\usepackage{caption}   % Add this for \captionof command
 
 % ===== COLOR DEFINITIONS =====
 % Standard document colors
@@ -30,6 +31,7 @@
 \definecolor{commentcolor}{rgb}{0.4,0.8,0.4}      
 \definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}       
 \definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}    
+\definecolor{subsubsectioncolor}{rgb}{0.0,0.5,0.7} % New color for subsubsections
 \definecolor{warningcolor}{rgb}{0.9,0.5,0.3}       
 \definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}     
 
@@ -68,6 +70,13 @@
 \titleformat{\subsection}
 {\color{subsectioncolor}\normalfont\large\bfseries}
 {\color{subsectioncolor}\thesubsection}{1em}{}
+
+% Change subsubsection numbering to Roman numerals while keeping the full hierarchy
+\renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
+
+\titleformat{\subsubsection}
+{\color{subsubsectioncolor}\normalfont\normalsize\bfseries}
+{\color{subsubsectioncolor}\thesubsubsection}{1em}{}
 
 % ===== CUSTOM ENVIRONMENTS =====
 % Command box environment for terminal commands and output
@@ -148,7 +157,7 @@
 \subsection{Service and Version Detection (-sV)}
 
 This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
-\begin{commandbox}[Service Version Detection]
+\begin{commandbox}[Service and Version Detection]
 % Command input with warningcolor (orange/rust)
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
 $ sudo nmap -sV {target_IP}
@@ -317,6 +326,136 @@ Network Distance: 1 hop
 % Just include the PDF without adding any extra content
 \includepdf[pages=-]{aggressive-scan.pdf}
 
+% ===== HOST DISCOVERY COMMANDS SECTION =====
+\section{Host Discovery Commands}
+
+\subsection{ARP Scan (-PR)}
+
+The ARP scan, \texttt{-PR}, is what you'd typically use if you're already in the network that you want to scan for live systems. The \texttt{-sn} flag here is necessary because it prevents nmap from scanning for open ports after the ARP scan.
+
+\begin{commandbox}[ARP Scan]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+$ sudo nmap -sn -PR 192.168.100.7/24
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash, style=bash, breaklines=true, breakindent=0pt]
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-03-29 02:07 +03
+Nmap scan report for 192.168.100.1
+Host is up (0.0016s latency).
+MAC Address: # This will show for all the live hosts, for all the upcoming Discovery Host scans in this document, but I'll redact them just in case.
+Nmap scan report for 192.168.100.9
+Host is up (0.092s latency).
+Nmap scan report for 192.168.100.12
+Host is up (0.054s latency).
+Nmap scan report for 192.168.100.13
+Host is up (0.11s latency).
+Nmap scan report for 192.168.100.15
+Host is up (0.082s latency).
+Nmap scan report for 192.168.100.16
+Host is up (0.10s latency).
+Nmap scan report for 192.168.100.25
+Host is up (0.053s latency).
+Nmap scan report for 192.168.100.28
+Host is up (0.061s latency).
+Nmap scan report for 192.168.100.7
+Host is up.
+Nmap done: 256 IP addresses (9 hosts up) scanned in 28.27 seconds
+\end{lstlisting}
+\end{commandbox}
+
+\vspace{-15pt}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{arp-scan.png}
+\captionof{figure}{Wireshark capture of ARP scan packets, a network different from the aforementioned by the way.}
+\label{fig:arp-scan}
+\end{center}
+
+\subsection{ICMP Scans}
+
+\begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
+    We'd rarely send these ICMP packets for the discovery of our system's own subnet, ARP Scans would be better in that case since firewalls tend to block ICMP packets a lot. 
+\end{tcolorbox}
+
+\subsubsection{Echo Scan (-PE)}
+Either way, the \texttt{-PE} scan sends the ICMP Type 8 packets (i.e. same as your \texttt{ping} command).
+\begin{commandbox}[ICMP Echo Scan (-PE)]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+$ sudo nmap -sn -PE 192.168.100.7/24
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash, style=bash, breaklines=true, breakindent=0pt]
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-03-29 03:06 +03
+Nmap scan report for 192.168.100.1
+Host is up (0.0039s latency).
+Nmap scan report for 192.168.100.12
+Host is up (0.33s latency).
+Nmap scan report for 192.168.100.13
+Host is up (0.74s latency).
+Nmap scan report for 192.168.100.15
+Host is up (0.072s latency).
+Nmap scan report for 192.168.100.16
+Host is up (0.32s latency).
+Nmap scan report for 192.168.100.25
+Host is up (0.11s latency).
+Nmap scan report for 192.168.100.28
+Host is up (0.73s latency).
+Nmap scan report for 192.168.100.7
+Host is up.
+Nmap done: 256 IP addresses (8 hosts up) scanned in 9.18 seconds
+\end{lstlisting}
+\end{commandbox}
+
+\vspace{-5pt}
+\noindent{\small Do you notice how it discovered 8 devices, whilst the previous ARP scan discovered 9?}
+\vspace{5pt}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{echo-request.png}
+    \captionof{figure}{Wireshark capture of Echo Request packets, a network different from the aforementioned by the way.}
+    \label{fig:echo-request}
+    \end{center}
+    
+\clearpage
+
+\subsubsection{Timestamp Scan (-PP)}
+
+Because ICMP echo requests tend to be blocked, you might also consider ICMP Timestamp (ICMP Type 13) to tell if a system is online.
+
+\begin{commandbox}[ICMP Timestamp Scan (-PP)]
+\begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
+$ sudo nmap -sn -PP 192.168.100.7/24
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash, style=bash, breaklines=true, breakindent=0pt]
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-03-29 03:53 +03
+Nmap scan report for 192.168.100.1
+Host is up (0.0016s latency).
+Nmap scan report for 192.168.100.9
+Host is up (0.075s latency).
+Nmap scan report for 192.168.100.12
+Host is up (0.12s latency).
+Nmap scan report for 192.168.100.13
+Host is up (0.083s latency).
+Nmap scan report for 192.168.100.14
+Host is up (0.058s latency).
+Nmap scan report for 192.168.100.15
+Host is up (0.033s latency).
+Nmap scan report for 192.168.100.16
+Host is up (0.073s latency).
+Nmap scan report for 192.168.100.25
+Host is up (0.077s latency).
+Nmap scan report for 192.168.100.7
+Host is up.
+Nmap done: 256 IP addresses (9 hosts up) scanned in 14.88 seconds
+\end{lstlisting}
+\end{commandbox}
+\vspace{-5pt}
+\noindent{\small We got "9 hosts up" once again!}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{timestamp-request.png}
+    \captionof{figure}{Wireshark capture of Timestamp Request packets, a network different from the aforementioned by the way.}
+    \label{fig:timestamp-request}
+    \end{center}
+
 \end{document}
 
-% Create a separate file called aggressive-scan.tex with the following content:

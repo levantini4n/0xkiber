@@ -1,3 +1,5 @@
+This repository so far contains:
+
 # Network Scanning Documentation
 
 This repository contains concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
@@ -41,7 +43,7 @@ Each document is designed with a custom page height to accommodate the content:
 - `basic-port-scanning.tex`: 400mm height
 - `aggressive-scan.tex`: Custom height
 
-These documents are included in the main document for a complete reference, and that's why Hyperlinks to them are unfortunately broken (clickable, but they don't lead you directly to the subsection).
+These documents are included in the main document for a complete reference, and that's why Hyperlinks to them are unfortunately broken (clickable, but they don't lead you directly to the clicked subsection).
 
 ---
 

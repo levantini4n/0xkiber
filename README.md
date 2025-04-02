@@ -1,8 +1,8 @@
 # This repository so far contains:
 
-## I. Network Scanning Documentation
+## I. Nmap Documentation
 
-This repository contains concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
+Concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 
 ### 🚀 Quick Start with Nix flakes
 

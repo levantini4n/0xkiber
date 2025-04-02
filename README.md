@@ -2,7 +2,7 @@
 
 ## I. Nmap Documentation
 
-Concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
+Concise documentation on various Nmap commands I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 
 ### 🚀 Quick Start with Nix
 

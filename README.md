@@ -34,7 +34,7 @@ If you have Nix installed and flakes enabled, building the documentation is simp
    ```
    This produces `aggressive-scan.pdf` in the current directory.
 
-5. Combine all documents into a single PDF:
+5. Combine all documents into a single PDF through the command defined in the flake:
    ```bash
    compile
    ```

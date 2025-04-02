@@ -1,6 +1,6 @@
-This repository so far contains:
+# This repository so far contains:
 
-# Network Scanning Documentation
+## I. Network Scanning Documentation
 
 This repository contains concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 

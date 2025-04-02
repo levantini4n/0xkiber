@@ -2,44 +2,46 @@
 
 % ===== PACKAGE IMPORTS =====
 % Essential packages for document formatting and functionality
-\usepackage[utf8]{inputenc}    
-\usepackage[T1]{fontenc}       
-\usepackage{lmodern}           
-\usepackage[paperwidth=330mm,paperheight=450mm,margin=0.3in]{geometry}  % Further reduced margins to 0.3in
-\usepackage{xcolor}            
-\usepackage{colortbl}       
-\usepackage{hyperref}      
-\usepackage{graphicx}     
-\usepackage{enumitem}       
-\usepackage{booktabs}      
-\usepackage{listings}       
-\usepackage[breakable,skins,theorems]{tcolorbox}  
-\usepackage{titlesec}         
-\usepackage{fancyhdr}         
-\usepackage{multirow}          
-\usepackage{wrapfig}          
-\usepackage{microtype}        
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[paperwidth=330mm,paperheight=450mm,margin=0.3in]{geometry}
+% Further reduced margins to 0.3in
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[breakable,skins,theorems]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{microtype}
 
 % ===== COLOR DEFINITIONS =====
 % Standard document colors
-\definecolor{codebackground}{rgb}{0.95,0.95,0.95}  
-\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}       
-\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}        
-\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}      
-\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}       
-\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}    
-\definecolor{subsubsectioncolor}{rgb}{0.0,0.5,0.7}  % Added missing subsubsection color
-\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}       
-\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}     
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
+\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}
+\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}
+\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}
+\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}
+\definecolor{subsubsectioncolor}{rgb}{0.0,0.5,0.7}  % Added missing
+% subsubsection color
+\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}
+\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}
 
 % terminal output styling
-\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}  
-\definecolor{kalitext}{rgb}{0.4,0.7,1.0}           
-\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}        
-\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}        
-\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}      
-\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}         
-\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}     
+\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}
+\definecolor{kalitext}{rgb}{0.4,0.7,1.0}
+\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}
+\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}
+\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}
+\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}
+\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}
 
 % ===== SECTION TITLE FORMATTING =====
 % Format section headings with custom colors
@@ -58,39 +60,39 @@
 % ===== CUSTOM ENVIRONMENTS =====
 % Command box environment for terminal commands and output
 \newenvironment{commandbox}[1][]{
-    \begin{tcolorbox}[
-        colback=kalibackground,   
-        colframe=commandcolor,    
-        fonttitle=\bfseries\color{white},  
-        title=#1,               
-        breakable=true           
+  \begin{tcolorbox}[
+      colback=kalibackground,
+      colframe=commandcolor,
+      fonttitle=\bfseries\color{white},
+      title=#1,
+      breakable=true
     ]
-}{
-    \end{tcolorbox}
+  }{
+  \end{tcolorbox}
 }
 
 % ===== CODE LISTING SETTINGS =====
 % Configure how code listings appear
 \lstset{
-    backgroundcolor=\color{kalibackground},
-    basicstyle=\footnotesize\ttfamily\color{warningcolor},  
-    breakatwhitespace=false,       
-    breaklines=true,              
-    captionpos=b,                
-    commentstyle=\color{commentcolor},  
-    keepspaces=true,               
-    keywordstyle=\color{kalitext}, 
-    showspaces=false,              
-    showstringspaces=false,       
-    showtabs=false,             
-    tabsize=2,                    
-    moredelim=[il][\color{commentcolor}]{\$\ }, 
-    stringstyle=\color{kalitext}
+  backgroundcolor=\color{kalibackground},
+  basicstyle=\footnotesize\ttfamily\color{warningcolor},
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{commentcolor},
+  keepspaces=true,
+  keywordstyle=\color{kalitext},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  moredelim=[il][\color{commentcolor}]{\$\ },
+  stringstyle=\color{kalitext}
 }
 
 % Add a specific setting for bash listings where # should be a comment
 \lstdefinestyle{bash}{
-    morecomment=[l][\color{commentcolor}]{\#}
+  morecomment=[l][\color{commentcolor}]{\#}
 }
 
 % Increase the default font size for the entire document
@@ -106,7 +108,9 @@
 
 \subsection{\huge \color{subsectioncolor}Aggressive Scan}
 
-What if you can have both OS detection and version detection with a single scan? That's what the aggressive scan is for. It enables OS detection, version detection, script scanning, and traceroute.
+What if you can have both OS detection and version detection with a
+single scan? That's what the aggressive scan is for. It enables OS
+detection, version detection, script scanning, and traceroute.
 
 \begin{commandbox}[Aggressive Scan]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\normalsize\ttfamily\color{warningcolor}]
@@ -120,16 +124,16 @@ Host is up (0.0062s latency).
 Not shown: 991 closed ports
 PORT    STATE SERVICE  VERSION
 22/tcp  open  ssh      OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   256 b9:bc:8f:01:5f:59:23:d3:3a:a2:2d:04:10:e5:04:2d (ECDSA)
 |_  256 c0:11:12:52:14:b3:e2:3d:41:bc:3e:94:bb:73:5f:89 (ED25519)
 25/tcp  open  smtp     Postfix smtpd
-|_smtp-commands: debra2.thm.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, CHUNKING, 
+|_smtp-commands: debra2.thm.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, CHUNKING,
 | ssl-cert: Subject: commonName=debra2.thm.local
 | Not valid before: 2021-08-10T12:10:58
 |_Not valid after:  2031-08-08T12:10:58
 53/tcp  open  domain   ISC BIND 9.18.28-1~deb12u2 (Debian Linux)
-| dns-nsid: 
+| dns-nsid:
 |_  bind.version: 9.18.28-1~deb12u2-Debian
 80/tcp  open  http     nginx 1.22.1
 |_http-title: Welcome to nginx on Debian!
@@ -140,7 +144,7 @@ PORT    STATE SERVICE  VERSION
 | Not valid before: 2021-08-10T12:10:58
 |_Not valid after:  2031-08-08T12:10:58
 111/tcp open  rpcbind  2-4 (RPC #100000)
-| rpcinfo: 
+| rpcinfo:
 |   program version    port/proto  service
 |   100000  2,3,4        111/tcp   rpcbind
 |   100000  2,3,4        111/udp   rpcbind
@@ -152,18 +156,18 @@ PORT    STATE SERVICE  VERSION
 | Not valid before: 2021-08-10T12:10:58
 |_Not valid after:  2031-08-08T12:10:58
 993/tcp open  imaps?
-| fingerprint-strings: 
-|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, TerminalServerCookie: 
+| fingerprint-strings:
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, TerminalServerCookie:
 |     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
-|   GenericLines, NULL: 
+|   GenericLines, NULL:
 |     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot (Debian) ready.
-|   GetRequest: 
+|   GetRequest:
 |     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
 |     BAD Command received in invalid state.
-|   HTTPOptions: 
+|   HTTPOptions:
 |     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
 |     BAD Command received in invalid state.
-|   RTSPRequest: 
+|   RTSPRequest:
 |     * OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN] Dovecot ready.
 |     BAD Command received in invalid state.
 |_    OPTIONS RTSP/1.0
@@ -171,8 +175,8 @@ PORT    STATE SERVICE  VERSION
 | Not valid before: 2021-08-10T12:10:58
 |_Not valid after:  2031-08-08T12:10:58
 995/tcp open  pop3s?
-| fingerprint-strings: 
-|   DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, Help, NULL, RPCCheck, RTSPRequest, SSLSessionReq, TerminalServerCookie: 
+| fingerprint-strings:
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, Help, NULL, RPCCheck, RTSPRequest, SSLSessionReq, TerminalServerCookie:
 |_    +OK Dovecot (Debian) ready.
 | ssl-cert: Subject: commonName=debra2.thm.local
 | Not valid before: 2021-08-10T12:10:58

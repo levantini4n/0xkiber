@@ -4,9 +4,9 @@
 
 This repository contains concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 
-### 🚀 Quick Start with Nix
+### 🚀 Quick Start with Nix flakes
 
-If you have Nix installed, building the documentation is simple:
+If you have Nix installed and flakes enabled, building the documentation is simple:
 
 1. Enter the Nix development environment:
    ```bash

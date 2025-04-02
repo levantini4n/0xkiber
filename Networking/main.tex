@@ -2,55 +2,56 @@
 
 % ===== PACKAGE IMPORTS =====
 % Essential packages for document formatting and functionality
-\usepackage[utf8]{inputenc}    
-\usepackage[T1]{fontenc}       
-\usepackage{lmodern}           
-\usepackage[margin=1in]{geometry}  
-\usepackage{xcolor}            
-\usepackage{colortbl}       
-\usepackage{hyperref}      
-\usepackage{graphicx}     
-\usepackage{enumitem}       
-\usepackage{booktabs}      
-\usepackage{listings}       
-\usepackage[breakable,skins,theorems]{tcolorbox}  
-\usepackage{titlesec}         
-\usepackage{fancyhdr}         
-\usepackage{multirow}          
-\usepackage{wrapfig}          
-\usepackage{microtype}        
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[breakable,skins,theorems]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{microtype}
 \usepackage{pdfpages}  % Add this to your package imports
 \usepackage{bookmark}  % Add this to your package imports
 \usepackage{caption}   % Add this for \captionof command
 
 % ===== COLOR DEFINITIONS =====
 % Standard document colors
-\definecolor{codebackground}{rgb}{0.95,0.95,0.95}  
-\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}       
-\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}        
-\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}      
-\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}       
-\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}    
-\definecolor{subsubsectioncolor}{rgb}{0.0,0.5,0.7} % New color for subsubsections
-\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}       
-\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}     
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
+\definecolor{outputcolor}{rgb}{0.0,0.0,0.6}
+\definecolor{commentcolor}{rgb}{0.4,0.8,0.4}
+\definecolor{sectioncolor}{rgb}{0.0,0.3,0.5}
+\definecolor{subsectioncolor}{rgb}{0.0,0.4,0.4}
+\definecolor{subsubsectioncolor}{rgb}{0.0,0.5,0.7} % New color for
+% subsubsections
+\definecolor{warningcolor}{rgb}{0.9,0.5,0.3}
+\definecolor{tiphighlight}{rgb}{0.95,0.95,0.7}
 
 % terminal output styling
-\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}  
-\definecolor{kalitext}{rgb}{0.4,0.7,1.0}           
-\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}        
-\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}        
-\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}      
-\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}         
-\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}     
+\definecolor{kalibackground}{rgb}{0.15,0.15,0.15}
+\definecolor{kalitext}{rgb}{0.4,0.7,1.0}
+\definecolor{kaliprompt}{rgb}{0.2,0.8,0.8}
+\definecolor{kalicommand}{rgb}{0.4,0.7,1.0}
+\definecolor{kalioutput}{rgb}{0.4,0.7,1.0}
+\definecolor{kaliurl}{rgb}{0.4,0.7,1.0}
+\definecolor{kaliheader}{rgb}{0.4,0.7,1.0}
 
 % ===== HYPERREF SETTINGS =====
 % Configure hyperlinks appearance
 \hypersetup{
-    colorlinks=true,          
-    linkcolor=sectioncolor,    
-    urlcolor=blue,            
-    citecolor=green           
+  colorlinks=true,
+  linkcolor=sectioncolor,
+  urlcolor=blue,
+  citecolor=green
 }
 
 % ===== HEADER & FOOTER SETUP =====
@@ -71,7 +72,8 @@
 {\color{subsectioncolor}\normalfont\large\bfseries}
 {\color{subsectioncolor}\thesubsection}{1em}{}
 
-% Change subsubsection numbering to Roman numerals while keeping the full hierarchy
+% Change subsubsection numbering to Roman numerals while keeping the
+% full hierarchy
 \renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
 
 \titleformat{\subsubsection}
@@ -81,51 +83,51 @@
 % ===== CUSTOM ENVIRONMENTS =====
 % Command box environment for terminal commands and output
 \newenvironment{commandbox}[1][]{
-    \begin{tcolorbox}[
-        colback=kalibackground,   
-        colframe=commandcolor,    
-        fonttitle=\bfseries\color{white},  
-        title=#1,               
-        breakable=true           
+  \begin{tcolorbox}[
+      colback=kalibackground,
+      colframe=commandcolor,
+      fonttitle=\bfseries\color{white},
+      title=#1,
+      breakable=true
     ]
-}{
-    \end{tcolorbox}
+  }{
+  \end{tcolorbox}
 }
 
 % Tip box environment for highlighting important information
 \newenvironment{tipbox}[1][Tip]{
-    \begin{tcolorbox}[
-        colback=tiphighlight,   
-        colframe=warningcolor,    
-        fonttitle=\bfseries\color{white},  
-        title=#1               
+  \begin{tcolorbox}[
+      colback=tiphighlight,
+      colframe=warningcolor,
+      fonttitle=\bfseries\color{white},
+      title=#1
     ]
-}{
-    \end{tcolorbox}
+  }{
+  \end{tcolorbox}
 }
 
 % ===== CODE LISTING SETTINGS =====
 % Configure how code listings appear
 \lstset{
-    backgroundcolor=\color{kalibackground},
-    basicstyle=\footnotesize\ttfamily\color{warningcolor},  
-    breakatwhitespace=false,       
-    breaklines=true,              
-    captionpos=b,                
-    commentstyle=\color{commentcolor},  
-    keepspaces=true,               
-    keywordstyle=\color{kalitext}, 
-    showspaces=false,              
-    showstringspaces=false,       
-    showtabs=false,             
-    tabsize=2,                    
-    moredelim=[il][\color{commentcolor}]{\$\ }, 
-    stringstyle=\color{kalitext}
+  backgroundcolor=\color{kalibackground},
+  basicstyle=\footnotesize\ttfamily\color{warningcolor},
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{commentcolor},
+  keepspaces=true,
+  keywordstyle=\color{kalitext},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  moredelim=[il][\color{commentcolor}]{\$\ },
+  stringstyle=\color{kalitext}
 }
 
 % Add a specific setting for bash listings where # should be a comment
 \lstdefinestyle{bash}{
-    morecomment=[l][\color{commentcolor}]{\#}
+  morecomment=[l][\color{commentcolor}]{\#}
 }
 
 % ===== CUSTOM COMMANDS =====
@@ -139,10 +141,11 @@
 
 % ===== TITLE SECTION =====
 \begin{center}
-    \begin{tcolorbox}[width=\textwidth, colback=sectioncolor!20, colframe=sectioncolor]
-        \centering
-        {\Huge \textbf{Nmap Cheatsheet}}\\[0.5em]
-    \end{tcolorbox}
+  \begin{tcolorbox}[width=\textwidth, colback=sectioncolor!20,
+    colframe=sectioncolor]
+    \centering
+    {\Huge \textbf{Nmap Cheatsheet}}\\[0.5em]
+  \end{tcolorbox}
 \end{center}
 
 \tableofcontents
@@ -151,7 +154,9 @@
 % ===== INTRODUCTION =====
 \vspace{1em}
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
-    This document shall contain everything I have learned so far about nmap. I must keep it up-to-date because I feel a bit inundated in this cybersecurity journey to be frank.
+  This document shall contain everything I have learned so far about
+  nmap. I must keep it up-to-date because I feel a bit inundated in
+  this cybersecurity journey to be frank.
 \end{tcolorbox}
 
 \section{Basic Nmap Commands}
@@ -159,14 +164,16 @@
 % ===== SERVICE VERSION DETECTION SECTION =====
 \subsection{Service and Version Detection (-sV)}
 
-This is the Service Detection flag \textit{(yes; \texttt{-sV} is a single flag, not a combination of both \texttt{s} AND \texttt{V})}, which will tell you the name and description of the identified services.
+This is the Service Detection flag \textit{(yes; \texttt{-sV} is a
+single flag, not a combination of both \texttt{s} AND \texttt{V})},
+which will tell you the name and description of the identified services.
 \begin{commandbox}[Service and Version Detection]
-% Command input with warningcolor (orange/rust)
+  % Command input with warningcolor (orange/rust)
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
 $ sudo nmap -sV {target_IP}
 \end{lstlisting}
 
-% Command output with kalitext color (blue)
+  % Command output with kalitext color (blue)
 \begin{lstlisting}[basicstyle=\small\ttfamily\color{kalitext}, language=bash]
 Starting Nmap 7.80 ( https://nmap.org ) at 2025-03-28 06:27 GMT
 Nmap scan report for 10.10.171.202
@@ -196,9 +203,15 @@ Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds
 % ===== DEFAULT SCRIPT SCAN SECTION =====
 \subsection{Default Script Scan (-sC)}
 
-I sometimes use this one instead of \texttt{-sV} because it runs \textit{default scripts}\footnote{Default NSE Scripts, \href{https://nmap.org/nsedoc/categories/default.html}{Nmap.org}}, which can give out additional information depending on the services running on the target. You can see a comparison in outputs between the two flags in the two boxes below.
+I sometimes use this one instead of \texttt{-sV} because it runs
+\textit{default scripts}\footnote{Default NSE Scripts,
+\href{https://nmap.org/nsedoc/categories/default.html}{Nmap.org}},
+which can give out additional information depending on the services
+running on the target. You can see a comparison in outputs between
+the two flags in the two boxes below.
 \begin{commandbox}[Default Script Scan]
-% Command with comment - note that # starts a comment that will be colored green
+  % Command with comment - note that # starts a comment that will be
+  % colored green
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\scriptsize\ttfamily\color{warningcolor}, breaklines=true, breakindent=0pt]
 $ sudo nmap -p- -sC {target_IP} # Do you notice how I had to scan all ports, not just the top 1000 most common?
 \end{lstlisting}
@@ -211,13 +224,13 @@ Not shown: 65526 closed ports
 PORT    STATE SERVICE
 22/tcp  open  ssh
 25/tcp  open  smtp
-|_smtp-commands: debra2.thm.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, CHUNKING, 
+|_smtp-commands: debra2.thm.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, CHUNKING,
 | ssl-cert: Subject: commonName=debra2.thm.local
 | Not valid before: 2021-08-10T12:10:58
 |_Not valid after:  2031-08-08T12:10:58
 |_ssl-date: TLS randomness does not represent time
 53/tcp  open  domain
-| dns-nsid: 
+| dns-nsid:
 |_  bind.version: 9.18.28-1~deb12u2-Debian
 80/tcp  open  http
 |_http-title: Welcome to nginx on Debian!
@@ -227,7 +240,7 @@ PORT    STATE SERVICE
 | Not valid before: 2021-08-10T12:10:58
 |_Not valid after:  2031-08-08T12:10:58
 111/tcp open  rpcbind
-| rpcinfo: 
+| rpcinfo:
 |   program version    port/proto  service
 |   100000  2,3,4        111/tcp   rpcbind
 |   100000  2,3,4        111/udp   rpcbind
@@ -289,7 +302,8 @@ Nmap done: 1 IP address (1 host up) scanned in 13.00 seconds
 % ===== OS DETECTION SCAN SECTION =====
 \subsection{OS Detection (-O)}
 
-Nmap sends a series of TCP and UDP packets to the remote host and examines practically every bit in the responses.
+Nmap sends a series of TCP and UDP packets to the remote host and
+examines practically every bit in the responses.
 
 \begin{commandbox}[OS Detection Scan]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -334,7 +348,10 @@ Network Distance: 1 hop
 
 \subsection{ARP Scan (-PR)}
 
-The ARP scan, \texttt{-PR}, is what you'd typically use if you're already in the network that you want to scan for live systems. The \texttt{-sn} flag here is necessary because it prevents nmap from scanning for open ports after the ARP scan.
+The ARP scan, \texttt{-PR}, is what you'd typically use if you're
+already in the network that you want to scan for live systems. The
+\texttt{-sn} flag here is necessary because it prevents nmap from
+scanning for open ports after the ARP scan.
 
 \begin{commandbox}[ARP Scan]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -368,19 +385,23 @@ Nmap done: 256 IP addresses (9 hosts up) scanned in 28.27 seconds
 
 \vspace{-15pt}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{arp-scan.png}
-\captionof{figure}{Wireshark capture of ARP scan packets, a network different from the aforementioned by the way.}
-\label{fig:arp-scan}
+  \includegraphics[width=0.7\textwidth]{arp-scan.png}
+  \captionof{figure}{Wireshark capture of ARP scan packets, a network
+  different from the aforementioned by the way.}
+  \label{fig:arp-scan}
 \end{center}
 
 \subsection{ICMP Scans}
 
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
-    We'd rarely send these ICMP packets for the discovery of our system's own subnet, ARP Scans would be better in that case since firewalls tend to block ICMP packets a lot. 
+  We'd rarely send these ICMP packets for the discovery of our
+  system's own subnet, ARP Scans would be better in that case since
+  firewalls tend to block ICMP packets a lot.
 \end{tcolorbox}
 
 \subsubsection{Echo Scan (-PE)}
-Either way, the \texttt{-PE} scan sends the ICMP Type 8 packets (i.e. same as your \texttt{ping} command).
+Either way, the \texttt{-PE} scan sends the ICMP Type 8 packets (i.e.
+same as your \texttt{ping} command).
 \begin{commandbox}[ICMP Echo Scan (-PE)]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
 $ sudo nmap -sn -PE 192.168.100.7/24
@@ -409,19 +430,22 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.18 seconds
 \end{commandbox}
 
 \vspace{-5pt}
-\noindent{\small Do you notice how it discovered 8 devices, whilst the previous ARP scan discovered 9?}
+\noindent{\small Do you notice how it discovered 8 devices, whilst
+the previous ARP scan discovered 9?}
 \vspace{5pt}
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{echo-request.png}
-    \captionof{figure}{Wireshark capture of Echo Request packets, a network different from the aforementioned by the way.}
-    \label{fig:echo-request}
-    \end{center}
-    
+  \includegraphics[width=0.7\textwidth]{echo-request.png}
+  \captionof{figure}{Wireshark capture of Echo Request packets, a
+  network different from the aforementioned by the way.}
+  \label{fig:echo-request}
+\end{center}
+
 \clearpage
 
 \subsubsection{Timestamp Scan (-PP)}
 
-Because ICMP echo requests tend to be blocked, you might also consider ICMP Timestamp (ICMP Type 13) to tell if a system is online.
+Because ICMP echo requests tend to be blocked, you might also
+consider ICMP Timestamp (ICMP Type 13) to tell if a system is online.
 
 \begin{commandbox}[ICMP Timestamp Scan (-PP)]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -455,15 +479,16 @@ Nmap done: 256 IP addresses (9 hosts up) scanned in 14.88 seconds
 \noindent{\small We got "9 hosts up" once again!}
 
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{timestamp-request.png}
-    \captionof{figure}{Wireshark capture of Timestamp Request packets.}
-    \label{fig:timestamp-request}
-    \end{center}
+  \includegraphics[width=0.7\textwidth]{timestamp-request.png}
+  \captionof{figure}{Wireshark capture of Timestamp Request packets.}
+  \label{fig:timestamp-request}
+\end{center}
 
 \clearpage
 \subsubsection{Address Mask Scan (-PM)}
 
-Similarly, Nmap uses address mask queries (ICMP Type 17) and checks whether it gets an address mask reply (ICMP Type 18).
+Similarly, Nmap uses address mask queries (ICMP Type 17) and checks
+whether it gets an address mask reply (ICMP Type 18).
 
 \begin{commandbox}[ICMP Address Mask Scan (-PM)]
 \begin{lstlisting}[language=bash, style=bash, basicstyle=\small\ttfamily\color{warningcolor}]
@@ -492,14 +517,17 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
 \end{lstlisting}
 \end{commandbox}
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{addressmask-request.png}
-    \captionof{figure}{Wireshark capture of Address Mask Request packets.}
-    \label{fig:addressmask-request}
-    \end{center}
+  \includegraphics[width=0.7\textwidth]{addressmask-request.png}
+  \captionof{figure}{Wireshark capture of Address Mask Request packets.}
+  \label{fig:addressmask-request}
+\end{center}
 
-    \vspace{1em}
+\vspace{1em}
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
-    Bonus: if you were to NOT specify one of the techniques above, just used \texttt{\textit{\textbf{nmap -sn}}} with no other flags, Nmap's default behaviour would be to reverse-DNS online hosts. And to skip that, you can use \texttt{\textit{\textbf{-n}}} flag.
+  Bonus: if you were to NOT specify one of the techniques above, just
+  used \texttt{\textit{\textbf{nmap -sn}}} with no other flags,
+  Nmap's default behaviour would be to reverse-DNS online hosts. And
+  to skip that, you can use \texttt{\textit{\textbf{-n}}} flag.
 \end{tcolorbox}
 \clearpage
 
@@ -530,4 +558,3 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
 \includepdf[pages=-, fitpaper]{basic-port-scanning.pdf}
 
 \end{document}
-

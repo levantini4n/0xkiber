@@ -29,29 +29,29 @@
 
 % Custom environments
 \newenvironment{commandbox}[1][]{
-    \begin{tcolorbox}[
-        colback=kalibackground,
-        colframe=commandcolor,
-        fonttitle=\bfseries\color{white},
-        title=#1,
-        breakable=true
+  \begin{tcolorbox}[
+      colback=kalibackground,
+      colframe=commandcolor,
+      fonttitle=\bfseries\color{white},
+      title=#1,
+      breakable=true
     ]
-}{
-    \end{tcolorbox}
+  }{
+  \end{tcolorbox}
 }
 
 % Code listing settings
 \lstset{
-    backgroundcolor=\color{kalibackground},
-    basicstyle=\footnotesize\ttfamily\color{warningcolor},
-    breaklines=true,
-    commentstyle=\color{commentcolor},
-    keywordstyle=\color{kalitext},
-    stringstyle=\color{kalitext}
+  backgroundcolor=\color{kalibackground},
+  basicstyle=\footnotesize\ttfamily\color{warningcolor},
+  breaklines=true,
+  commentstyle=\color{commentcolor},
+  keywordstyle=\color{kalitext},
+  stringstyle=\color{kalitext}
 }
 
 \lstdefinestyle{bash}{
-    morecomment=[l][\color{commentcolor}]{\#}
+  morecomment=[l][\color{commentcolor}]{\#}
 }
 
 % Section formatting
@@ -87,35 +87,53 @@
 \section{Basic Port Scanning}
 
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
-So far when we scanned ports we've seen only the \textbf{Open} state, but here's what Nmap also considers:
+  So far when we scanned ports we've seen only the \textbf{Open}
+  state, but here's what Nmap also considers:
 
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Open}: indicates that a service is listening on the specified port.
-    \item \textbf{Closed}: indicates that no service is listening on the specified port, although the port is accessible. By \textit{accessible}, we mean that it is reachable and is not blocked by a firewall or other security appliances/programs.
-    \item \textbf{Filtered}: means that Nmap cannot determine if the port is open or closed because the port is not accessible. This state is usually due to a firewall preventing Nmap from reaching that port. Nmap's packets may be blocked from reaching the port; alternatively, the responses are blocked from reaching Nmap's host.
-    \item \textbf{Unfiltered}: means that Nmap cannot determine if the port is open or closed, although the port is accessible. This state is encountered when using an ACK scan \texttt{-sA}.
-    \item \textbf{Open|Filtered}: This means that Nmap cannot determine whether the port is open or filtered.
-    \item \textbf{Closed|Filtered}: This means that Nmap cannot decide whether a port is closed or filtered.
-\end{itemize}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Open}: indicates that a service is listening on the
+      specified port.
+    \item \textbf{Closed}: indicates that no service is listening on
+      the specified port, although the port is accessible. By
+      \textit{accessible}, we mean that it is reachable and is not
+      blocked by a firewall or other security appliances/programs.
+    \item \textbf{Filtered}: means that Nmap cannot determine if the
+      port is open or closed because the port is not accessible. This
+      state is usually due to a firewall preventing Nmap from
+      reaching that port. Nmap's packets may be blocked from reaching
+      the port; alternatively, the responses are blocked from
+      reaching Nmap's host.
+    \item \textbf{Unfiltered}: means that Nmap cannot determine if
+      the port is open or closed, although the port is accessible.
+      This state is encountered when using an ACK scan \texttt{-sA}.
+    \item \textbf{Open|Filtered}: This means that Nmap cannot
+      determine whether the port is open or filtered.
+    \item \textbf{Closed|Filtered}: This means that Nmap cannot
+      decide whether a port is closed or filtered.
+  \end{itemize}
 \end{tcolorbox}
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{st-discovery.png}
-    \captionof{figure}{A closed TCP port responds to a SYN packet with RST/ACK to indicate that it is not open.}
-    \label{fig:sT-scan}
-    \end{center}
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{stealth-scan.png}
-        \captionof{figure}{SYN scan does not need to complete the TCP 3-way handshake; instead, it tears down the connection once it receives a response from the server.}
-        \label{fig:sS-scan}
-        \end{center}
+  \includegraphics[width=0.7\textwidth]{st-discovery.png}
+  \captionof{figure}{A closed TCP port responds to a SYN packet with
+  RST/ACK to indicate that it is not open.}
+  \label{fig:sT-scan}
+\end{center}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{stealth-scan.png}
+  \captionof{figure}{SYN scan does not need to complete the TCP 3-way
+    handshake; instead, it tears down the connection once it receives a
+  response from the server.}
+  \label{fig:sS-scan}
+\end{center}
 
-            \begin{center}
-                \includegraphics[width=0.7\textwidth]{sU-success.png}
-                \captionof{figure}{the UDP ports that don’t generate any response are the ones that Nmap will state as open.}
-                \label{fig:sU-scan-success}
-                \end{center}
-                \begin{center}
-                    \includegraphics[width=0.7\textwidth]{sU-failed.png}
-                    \label{fig:sU-scan-failure}
-                    \end{center}
-\end{document} 
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{sU-success.png}
+  \captionof{figure}{the UDP ports that don’t generate any response
+  are the ones that Nmap will state as open.}
+  \label{fig:sU-scan-success}
+\end{center}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{sU-failed.png}
+  \label{fig:sU-scan-failure}
+\end{center}
+\end{document}

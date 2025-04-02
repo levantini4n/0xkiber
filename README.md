@@ -34,6 +34,12 @@ If you have Nix installed, building the documentation is simple:
    ```
    This produces `aggressive-scan.pdf` in the current directory.
 
+5. Combine all documents into a single PDF:
+   ```bash
+   compile
+   ```
+   This produces `main.pdf` in the current directory.
+
 Your directory will be a total mess by the way.
 
 ### 📖 Document Structure

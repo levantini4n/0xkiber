@@ -63,13 +63,6 @@
             graphviz         # ER diagrams
             plantuml         # UML diagrams
           ];
-
-          shellHook = ''
-            echo "⚡ LaTeX environment ready!"
-            echo "Commands:"
-            echo "  compile - Run latexmk and pdflatex to build the document"
-            echo "  view    - Open the PDF with mupdf"
-          '';
         };
       });
 }

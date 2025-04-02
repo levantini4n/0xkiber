@@ -4,7 +4,7 @@
 
 This repository contains concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 
-## 🚀 Quick Start with Nix
+### 🚀 Quick Start with Nix
 
 If you have Nix installed, building the documentation is simple:
 
@@ -36,7 +36,7 @@ If you have Nix installed, building the documentation is simple:
 
 Your directory will be a total mess by the way.
 
-## 📖 Document Structure
+### 📖 Document Structure
 
 Each document is designed with a custom page height to accommodate the content:
 - `tcp-udp-discovery.tex`: 900mm height

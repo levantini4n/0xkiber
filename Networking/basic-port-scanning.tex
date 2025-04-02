@@ -14,7 +14,7 @@
 \usepackage{enumitem}  % Add this package for itemize options
 
 % Set page dimensions - custom height of 400mm
-\usepackage[paperwidth=210mm,paperheight=370mm,top=1cm,bottom=2cm,left=1cm,right=1cm]{geometry}
+\usepackage[paperwidth=210mm,paperheight=380mm,top=1cm,bottom=2cm,left=1cm,right=1cm]{geometry}
 
 % Color definitions
 \definecolor{commandcolor}{rgb}{0.8,0.0,0.0}
@@ -112,12 +112,21 @@
       decide whether a port is closed or filtered.
   \end{itemize}
 \end{tcolorbox}
+
+% First figure with separator after it
 \begin{center}
   \includegraphics[width=0.7\textwidth]{st-discovery.png}
   \captionof{figure}{A closed TCP port responds to a SYN packet with
   RST/ACK to indicate that it is not open.}
   \label{fig:sT-scan}
 \end{center}
+
+% Add elegant separator
+\begin{center}
+  \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+% Second figure with separator after it
 \begin{center}
   \includegraphics[width=0.7\textwidth]{stealth-scan.png}
   \captionof{figure}{SYN scan does not need to complete the TCP 3-way
@@ -126,14 +135,28 @@
   \label{fig:sS-scan}
 \end{center}
 
+% Add elegant separator
+\begin{center}
+  \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+% Third figure with separator after it
 \begin{center}
   \includegraphics[width=0.7\textwidth]{sU-success.png}
-  \captionof{figure}{the UDP ports that don’t generate any response
+  \captionof{figure}{the UDP ports that don't generate any response
   are the ones that Nmap will state as open.}
   \label{fig:sU-scan-success}
 \end{center}
+
+% Add elegant separator
+\begin{center}
+  \rule{0.8\textwidth}{0.5pt}
+\end{center}
+
+% Fourth figure
 \begin{center}
   \includegraphics[width=0.7\textwidth]{sU-failed.png}
+  \captionof{figure}{ICMP port unreachable message indicates the UDP port is closed.}
   \label{fig:sU-scan-failure}
 \end{center}
 \end{document}

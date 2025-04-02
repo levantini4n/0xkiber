@@ -4,7 +4,7 @@
 
 Concise documentation on network scanning techniques I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 
-### 🚀 Quick Start with Nix flakes
+### 🚀 Quick Start with Nix
 
 If you have Nix installed and flakes enabled, building the documentation is simple:
 

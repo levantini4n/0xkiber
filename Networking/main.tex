@@ -517,5 +517,17 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
 \addcontentsline{toc}{subsubsection}{\numberline {2.3.III}UDP Scan (-PU)}
 % Just include the PDF without adding any extra content
 \includepdf[pages=-, fitpaper]{tcp-udp-discovery.pdf}
+
+% Save current position in main document
+\label{before-basic-port-scanning}
+
+% Place the phantom section before including the PDF
+\clearpage  % Ensure we're on a new page
+\phantomsection  % Place anchor here at the top of the page
+\addcontentsline{toc}{section}{\numberline {3}Basic Port Scanning}
+
+% Just include the PDF without adding any extra content
+\includepdf[pages=-, fitpaper]{basic-port-scanning.pdf}
+
 \end{document}
 

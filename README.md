@@ -53,7 +53,7 @@ Each document is designed with a custom page height to accommodate the content:
 - `basic-port-scanning.tex`: 380mm 
 - `aggressive-scan.tex`: 330mm
 
-These documents are included in the main document for a complete reference, and that's why Hyperlinks to them are unfortunately broken (clickable, but they don't lead you directly to the clicked subsection).
+These documents are included in the main document for a complete reference, and that's why Hyperlinks to them are unfortunately broken (clickable, but they don't lead you directly to the clicked subsection, rather to the beginning of each document).
 
 ---
 

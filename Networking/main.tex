@@ -668,23 +668,57 @@ reveal that the port is open.
   on the target system.}
   \label{fig:Ack-Scan}
 \end{center}
-\section{To Do Items}
+\clearpage
+\section{Fragmented Packets (-f)}
+We use this technique in an attempt to evade Firewalls and IDSs. To properly understand fragmentation, we need to look at the IP header in the figure below. It might look complicated at first, but we notice that we know most of its fields. In particular, notice the source address taking 32 bits (4 bytes) on the fourth row, while the destination address is taking another 4 bytes on the fifth row. The data that we will fragment across multiple packets is highlighted in red. To aid in the reassembly on the recipient side, IP uses the identification (ID) and fragment offset, shown on the second row of the figure below.
 
-\begin{tcolorbox}[colback=sectioncolor!20, colframe=sectioncolor,
-  width=\textwidth]
-  \begin{center}
-    \Large\textbf{TO DO LIST}
-  \end{center}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{Fragmentation-figure.png}
+  \label{fig:Fragmentation}
+\end{center}
 
-  \begin{itemize}
-    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Fragmented Packets:}
-      document how to attempt IDS and Firewall evansion with Nmap by fragmenting our packets using
-      the \texttt{-f} option
-      and other packet fragmentation techniques
+\section{Zombie Scan (-sI)}
+One can't always benefit from spoofing his IP address via \textbf{nmap -S SPOOFED\_IP MACHINE\_IP}, and that's simply because you won't always be able to monitor the target networks traffic. And that's where zombie scans come in handy.
+In the figure below, we have the attacker system probing an idle machine, a multi-function printer. By sending a SYN/ACK, it responds with an RST packet containing its newly incremented IP ID.
 
-    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Zombie Scan:}
-      Document the \texttt{-sI} scan technique to leverage Idle Machines on the target network
-      
-  \end{itemize}
-\end{tcolorbox}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{zombie-scan.png}
+  \label{fig:Zombie-scan}
+\end{center}
+
+The attacker will send a SYN packet to the TCP port they want to check on the target machine in the next step. However, this packet will use the idle host (zombie) IP address as the source. Three scenarios would arise. In the first scenario, shown in the figure below, the TCP port is closed; therefore, the target machine responds to the idle host with an RST packet. The idle host does not respond; hence its IP ID is not incremented.
+
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{zombie-scan-2.png}
+  \label{fig:Zombie-scan-2}
+\end{center}
+
+In the second scenario, as shown below, the TCP port is open, so the target machine responds with a SYN/ACK to the idle host (zombie). The idle host responds to this unexpected packet with an RST packet, thus incrementing its IP ID.
+
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{zombie-scan-3.png}
+  \label{fig:Zombie-scan-3}
+\end{center}
+
+In the third scenario, the target machine does not respond at all due to firewall rules. This lack of response will lead to the same result as with the closed port; the idle host won’t increase the IP ID.
+%\clearpage
+%\section{To Do Items}
+%
+%\begin{tcolorbox}[colback=sectioncolor!20, colframe=sectioncolor,
+%  width=\textwidth]
+%  \begin{center}
+%    \Large\textbf{TO DO LIST}
+%  \end{center}
+%
+%  \begin{itemize}
+%    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Fragmented Packets:}
+%      document how to attempt IDS and Firewall evansion with Nmap by fragmenting our packets using
+%      the \texttt{-f} option
+%      and other packet fragmentation techniques
+%
+%    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Zombie Scan:}
+%      Document the \texttt{-sI} scan technique to leverage Idle Machines on the target network
+%
+%  \end{itemize}
+%\end{tcolorbox}
 \end{document}

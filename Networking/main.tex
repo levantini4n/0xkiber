@@ -570,27 +570,31 @@ Nmap done: 256 IP addresses (8 hosts up) scanned in 9.39 seconds
 \setcounter{section}{3}
 \section{Advanced Port Scanning}
 \begin{tcolorbox}[colback=codebackground, colframe=warningcolor]
-Now we'll need to revise the TCP header as these scans revolve around manipulating its flags.
+  Now we'll need to revise the TCP header as these scans revolve
+  around manipulating its flags.
 \end{tcolorbox}
 \begin{center}
   \includegraphics[width=0.7\textwidth]{./TCP-Packet}
   \label{fig:tcp-header}
 \end{center}
 \vspace{-5pt}
-\noindent{\small Do you notice the flags in the fourth row? read em' vertically from top to bottom if you're a little confused.}
+\noindent{\small Do you notice the flags in the fourth row? read em'
+vertically from top to bottom if you're a little confused.}
 \subsection{Null Scan (-sN)}
 The null scan does not set any flag; all six flag bits are set to zero.
 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{null-open.png}
-  \captionof{figure}{From Nmap’s perspective, a lack of reply in a null scan indicates that either the port is open or a firewall is blocking the packet.}
+  \captionof{figure}{From Nmap’s perspective, a lack of reply in a
+    null scan indicates that either the port is open or a firewall is
+  blocking the packet.}
   \label{fig:null-open}
 \end{center}
 
-
 \begin{center}
   \includegraphics[width=0.7\textwidth]{null-closed.png}
-  \captionof{figure}{We expect the target server to respond with an RST packet if the port is closed.}
+  \captionof{figure}{We expect the target server to respond with an
+  RST packet if the port is closed.}
   \label{fig:null-closed}
 \end{center}
 
@@ -600,18 +604,29 @@ The FIN scan sends a TCP packet with the FIN flag set.
 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{FIN-Open.png}
-  \captionof{figure}{Similarly, no response will be sent if the TCP port is open. Again, Nmap cannot be sure if the port is open or if a firewall is blocking the traffic related to this TCP port.}
+  \captionof{figure}{Similarly, no response will be sent if the TCP
+    port is open. Again, Nmap cannot be sure if the port is open or if
+  a firewall is blocking the traffic related to this TCP port.}
   \label{fig:FIN-Open}
 \end{center}
 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{FIN-Closed.png}
-  \captionof{figure}{However, the target system should respond with an RST if the port is closed. Consequently, we will be able to know which ports are closed and use this knowledge to infer the ports that are open or filtered. It's worth noting some firewalls will 'silently' drop the traffic without sending an RST.}
+  \captionof{figure}{However, the target system should respond with
+    an RST if the port is closed. Consequently, we will be able to know
+    which ports are closed and use this knowledge to infer the ports
+    that are open or filtered. It's worth noting some firewalls will
+  'silently' drop the traffic without sending an RST.}
   \label{fig:FIN-Closed}
 \end{center}
 
 \subsection{Xmas Scan (-sX)}
-The Xmas scan gets its name after Christmas tree lights. An Xmas scan sets the FIN, PSH, and URG flags simultaneously. Like the Null scan and FIN scan, if an RST packet is received, it means that the port is closed. Otherwise, it will be reported as open|filtered. The following two figures show the case when the TCP port is open and the case when the TCP port is closed.
+The Xmas scan gets its name after Christmas tree lights. An Xmas scan
+sets the FIN, PSH, and URG flags simultaneously. Like the Null scan
+and FIN scan, if an RST packet is received, it means that the port is
+closed. Otherwise, it will be reported as open|filtered. The
+following two figures show the case when the TCP port is open and the
+case when the TCP port is closed.
 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{Xmas-Open.png}
@@ -626,36 +641,50 @@ The Xmas scan gets its name after Christmas tree lights. An Xmas scan sets the F
 \clearpage
 
 \subsection{Ack Scan (-sA)}
-the target would respond to the ACK with RST regardless of the state of the port. This behaviour happens because a TCP packet with the ACK flag set should be sent only in response to a received TCP packet to acknowledge the receipt of some data, unlike our case.
+the target would respond to the ACK with RST regardless of the state
+of the port. This behaviour happens because a TCP packet with the ACK
+flag set should be sent only in response to a received TCP packet to
+acknowledge the receipt of some data, unlike our case.
 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{Ack-Scan.png}
-  \captionof{figure}{This kind of scan would be helpful if there is a firewall in front of the target. Consequently, based on which ACK packets resulted in responses, you will learn which ports were not blocked by the firewall. In other words, this type of scan is more suitable to discover firewall rule sets and configuration.}
+  \captionof{figure}{This kind of scan would be helpful if there is a
+    firewall in front of the target. Consequently, based on which ACK
+    packets resulted in responses, you will learn which ports were not
+    blocked by the firewall. In other words, this type of scan is more
+  suitable to discover firewall rule sets and configuration.}
   \label{fig:Ack-Scan}
 \end{center}
 
 \subsection{Window Scan (-sW)}
-Another similar scan is the TCP window scan. The TCP window scan is almost the same as the ACK scan; however, it examines the TCP Window field of the RST packets returned. On specific systems, this can reveal that the port is open.
+Another similar scan is the TCP window scan. The TCP window scan is
+almost the same as the ACK scan; however, it examines the TCP Window
+field of the RST packets returned. On specific systems, this can
+reveal that the port is open.
 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{Window-Scan.png}
-  \captionof{figure}{This is also useful only when there's a firewall on the target system.}
+  \captionof{figure}{This is also useful only when there's a firewall
+  on the target system.}
   \label{fig:Ack-Scan}
 \end{center}
 \section{To Do Items}
 
-\begin{tcolorbox}[colback=sectioncolor!20, colframe=sectioncolor, width=\textwidth]
+\begin{tcolorbox}[colback=sectioncolor!20, colframe=sectioncolor,
+  width=\textwidth]
   \begin{center}
     \Large\textbf{TO DO LIST}
   \end{center}
-  
+
   \begin{itemize}
-    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Fragmented Packets:} 
-    Research and document how Nmap handles fragmented packets using the \texttt{-f} option 
-    and other packet fragmentation techniques
-    
-    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Idle/Zombie Scan:} 
-    Document the \texttt{-sI} scan technique and explain how it works for stealthy port scanning
+    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Fragmented Packets:}
+      Research and document how Nmap handles fragmented packets using
+      the \texttt{-f} option
+      and other packet fragmentation techniques
+
+    \item[\textcolor{warningcolor}{$\bullet$}] \textbf{Idle/Zombie Scan:}
+      Document the \texttt{-sI} scan technique and explain how it
+      works for stealthy port scanning
   \end{itemize}
 \end{tcolorbox}
 \end{document}

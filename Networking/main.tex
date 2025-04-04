@@ -678,7 +678,7 @@ We use this technique in an attempt to evade Firewalls and IDSs. To properly und
 \end{center}
 
 \section{Zombie Scan (-sI)}
-One can't always benefit from spoofing his IP address via \textbf{nmap -S SPOOFED\_IP MACHINE\_IP}, and that's simply because you won't always be able to monitor the target networks traffic. And that's where zombie scans come in handy.
+One can't always benefit from spoofing his IP address via \texttt{nmap -S SPOOFED\_IP MACHINE\_IP}, and that's simply because you won't always be able to monitor the target networks traffic. And that's where zombie scans come in handy.
 In the figure below, we have the attacker system probing an idle machine, a multi-function printer. By sending a SYN/ACK, it responds with an RST packet containing its newly incremented IP ID.
 
 \begin{center}

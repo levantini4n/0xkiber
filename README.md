@@ -1,6 +1,6 @@
 # This repository so far contains:
 
-## I.🗂️ Structured Nmap Exploration 
+## I. 🗂️ Structured Nmap Exploration 
 
 Concise hands-on lab notes from my journey learning Nmap.
 

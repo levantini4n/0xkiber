@@ -1,6 +1,6 @@
 # This repository so far contains:
 
-## I. Nmap Documentation
+## I. Brief Nmap Documentation
 
 Concise documentation on various Nmap commands I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
 

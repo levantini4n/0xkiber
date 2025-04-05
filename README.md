@@ -1,8 +1,8 @@
 # This repository so far contains:
 
-## I. Brief Nmap Documentation
+## I.🗂️ Structured Nmap Exploration 
 
-Concise documentation on various Nmap commands I learned from TryHackMe as well as HackTheBox (mostly TryHackMe though).
+Concise hands-on lab notes from my journey learning Nmap.
 
 ### 🚀 Quick Start with Nix
 

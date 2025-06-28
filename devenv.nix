@@ -64,19 +64,11 @@
       echo "✅ Clean complete!"
     '';
     
-    watch.exec = ''
-      echo "👀 Watching for changes..."
-      latexmk -pdf -pvc main.tex
-    '';
+    # watch.exec = ''
+    #   echo "👀 Watching for changes..."
+    #   latexmk -pdf -pvc main.tex
+    # '';
     
-    view.exec = ''
-      if [ -f "main.pdf" ]; then
-        echo "📖 Opening PDF..."
-        xdg-open main.pdf
-      else
-        echo "❌ main.pdf not found. Run 'compile' first."
-      fi
-    '';
   };
 
   # Environment variables
@@ -94,8 +86,7 @@
     echo "Available commands:"
     echo "  compile  - Compile the LaTeX document"
     echo "  clean    - Clean build artifacts"
-    echo "  watch    - Watch for changes and auto-compile"
-    echo "  view     - Open the generated PDF"
+    # echo "  watch    - Watch for changes and auto-compile"
     echo ""
     echo "Happy writing! ✍️"
   '';

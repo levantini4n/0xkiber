@@ -10,7 +10,7 @@ If you have Nix installed and flakes enabled, building the documentation is simp
 
 1. Enter the Nix development environment:
    ```bash
-   nix develop
+   devenv shell
    ```
 2. Move files from `assets` to `Networking/`:
     ```bash

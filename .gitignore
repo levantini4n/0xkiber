@@ -6,5 +6,5 @@ output
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+*.pdf
 
-Networking/aggressive-scan.pdf
